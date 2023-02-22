@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SatuSehat</string>
+    <string name="tag_satu_sehat">Satu Sehat</string>
+    <string name="str_no_telp" translatable="false">Nomor Telepon</string>
+</resources>
