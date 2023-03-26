@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="custom_edt_width">331dp</dimen>
+    <dimen name="custom_edt_height">56dp</dimen>
+    <dimen name="custom_edt_margin_top">10dp</dimen>
+    <dimen name="custom_padding">10dp</dimen>
+</resources>

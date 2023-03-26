@@ -2,4 +2,67 @@
     <string name="app_name">SatuSehat</string>
     <string name="tag_satu_sehat">Satu Sehat</string>
     <string name="str_no_telp" translatable="false">Nomor Telepon</string>
+    <string name="str_password">Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_btn_masuk">Masuk</string>
+    <string name="str_btn_daftar">Daftar</string>
+    <string name="masuk">Masuk</string>
+    <string name="str_lanjut">lanjut</string>
+    <string name="str_nik">Nomor Induk Kependudukan</string>
+    <string name="str_pilih_pendidikan">Pilih Pendidikan</string>
+    <string name="str_status_perkawinan">Pilih Status Perkawinan</string>
+    <string name="str_pilih_agama">Pilih Agama</string>
+    <string name="str_pilih_pekerjaan">Pilih Pekerjaan</string>
+    <string name="str_konfirmasi_password">Konfirmasi Password</string>
+
+
+    <!--    String for spinner input-->
+
+    <string-array name="agama">
+        <item>Islam</item>
+        <item>Kristen</item>
+        <item>Katolik</item>
+        <item>Budha</item>
+        <item>Hindu</item>
+        <item>Konghuchu</item>
+    </string-array>
+
+    <string-array name="pekerjaan">
+        <item>BELUM/TIDAK BEKERJA</item>
+        <item>PELAJAR/MAHASISWA</item>
+        <item>PENSIUNAN</item>
+        <item>TENTARA NASIONAL INDONESIA</item>
+        <item>PETANI/PEKEBUN</item>
+        <item>NELAYAN/PERIKANAN</item>
+        <item>PENDETA</item>
+        <item>WAKIL GUBERNUR</item>
+        <item>BUPATI</item>
+        <item>GURU</item>
+        <item>PERAWAT</item>
+        <item>WIRASWASTA</item>
+        <item>LAINNYA</item>
+    </string-array>
+
+    <string-array name="pendidikan">
+        <item>Tidak/Belum Sekolah</item>
+        <item>BELUM TAMAT SD/SEDERAJAT</item>
+        <item>TAMAT SD/SEDERAJAT</item>
+        <item>SLTP/SEDERAJAT</item>
+        <item>SLTA/SEDERAJAT</item>
+        <item>DIPLOMA I/II</item>
+        <item>DIPLOMA IV/STRATA I</item>
+        <item>AKADEMI/DIPLOMA III/S. MUDA</item>
+        <item>STRATA II</item>
+        <item>STRATA III</item>
+    </string-array>
+
+    <string-array name="status_perkawinan">
+        <item>Belum Perkawinan</item>
+        <item>Perkawinan</item>
+        <item>Cerai Hidup</item>
+        <item>Cerai Mati</item>
+    </string-array>
+
+
 </resources>

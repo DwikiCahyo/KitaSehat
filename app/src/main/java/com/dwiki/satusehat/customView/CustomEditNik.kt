@@ -1,4 +1,4 @@
-package com.dwiki.satusehat.CustomView
+package com.dwiki.satusehat.customView
 
 import android.content.Context
 import android.graphics.Canvas
@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.dwiki.satusehat.R
 
-class CustomEditPhoneNumber:AppCompatEditText {
+class CustomEditNik:AppCompatEditText {
 
     private lateinit var successDrawable:Drawable
     private lateinit var errorDrawable: Drawable
@@ -32,11 +32,16 @@ class CustomEditPhoneNumber:AppCompatEditText {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 //
-                if (s.toString().isNullOrEmpty()) showError()
+                if (s.toString().isNullOrEmpty()) {
+                    showError()
+
+
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if (s.toString().length>=11 && s.toString().isNotEmpty())  showSuccess()
+                if (s.toString().length ==16 && s.toString().isNotEmpty())  showSuccess()
+
             }
 
         })
@@ -46,6 +51,7 @@ class CustomEditPhoneNumber:AppCompatEditText {
         setButtonDrawables(endOfTheText = successDrawable)
     }
     private fun showError(){
+        error = "NIK tidak boleh kosong"
         setButtonDrawables(endOfTheText = errorDrawable)
     }
 
@@ -55,7 +61,7 @@ class CustomEditPhoneNumber:AppCompatEditText {
         super.onDraw(canvas)
         setBackgroundResource(R.drawable.custom_border_edit_text)
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-        hint = context.getString(R.string.str_no_telp)
+        hint = context.getString(R.string.str_nik)
         textSize = 16f
     }
 

@@ -16,4 +16,9 @@
     <color name="gray_light">#bcbcc4</color>
     <color name="gray_dark">#575762</color>
 
+    <color name="red_error">#DC0000</color>
+    <color name="border">#E8ECF4</color>
+    <color name="primary">#35C2C1</color>
+    <color name="yellow_off">#FFBB12</color>
+
 </resources>
