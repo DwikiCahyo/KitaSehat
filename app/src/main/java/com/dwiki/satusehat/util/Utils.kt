@@ -40,6 +40,11 @@ object Utils {
         view.text = "Password yang anda masukan salah"
     }
 
+    fun nikNotFound(view: TextView){
+        view.visibility = View.VISIBLE
+        view.text = "NIK anda belum terdaftar"
+    }
+
     fun correctPass(view: TextView){
         view.visibility = View.GONE
     }

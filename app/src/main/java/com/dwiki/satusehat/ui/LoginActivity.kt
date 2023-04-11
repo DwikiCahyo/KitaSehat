@@ -2,6 +2,7 @@ package com.dwiki.satusehat.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -52,26 +53,25 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        binding.btnMasuk.setOnClickListener {
+        binding.btnMasuk.setOnClickListener { it ->
 
             KeyboardUtils.hideKeyboard(this, it)
             val nik = binding.edtNik.text.toString()
             val password = binding.edtPassword.text.toString()
-            loginViewModel.loginPasien(nik, password).observe(this){
+            loginViewModel.loginPasien(nik, password).observe(this){ pasienResponse ->
 
-                when(it.status){
+                when(pasienResponse.status){
                     Status.SUCCESS -> {
                         loading.dismissDialog()
                         Utils.correctPass(binding.tvErrorFormatPass)
-                        val loginResponse = it.data
+                        val loginResponse = pasienResponse.data
                         if (loginResponse != null){
                             stateViewModel.saveLoginState(true)
                             stateViewModel.saveToken(loginResponse.token)
-                            Log.d(TAG,"Login Success")
-
+                            Log.d(TAG, loginResponse.message)
                             val intent = Intent(this,DashboardActivity::class.java)
-
                             startActivity(intent)
+                            finish()
                         }
                     }
 
@@ -83,8 +83,19 @@ class LoginActivity : AppCompatActivity() {
 
                     Status.ERROR ->{
                         loading.dismissDialog()
-                        Utils.wrongPass(binding.tvErrorFormatPass)
-                        Log.d(TAG,"${it.data}, ${it.message}")
+                        val jsonObject = JSONTokener(pasienResponse.message).nextValue() as JSONObject
+                        val msg = jsonObject.getString("message")
+                        when(msg){
+                            "NIK not found" -> {
+                                binding.edtNik.requestFocus()
+                                Utils.nikNotFound(binding.tvErrorFormatNik)
+                            }
+                            "wrong password" -> {
+                                binding.edtPassword.requestFocus()
+                                Utils.wrongPass(binding.tvErrorFormatPass)
+                            }
+                        }
+                        Log.d(TAG,"${pasienResponse.data}, ${pasienResponse.message}")
                     }
                 }
             }

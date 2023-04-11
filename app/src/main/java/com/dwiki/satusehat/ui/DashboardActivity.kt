@@ -23,8 +23,6 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var loadingDialog: LoadingDialog
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DashboardActivityBinding.inflate(layoutInflater)
