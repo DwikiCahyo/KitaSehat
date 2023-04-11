@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    tools:context=".ui.LoginActivity">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="-50dp"
+        app:cardCornerRadius="50dp"
+        android:elevation="2dp"
+        android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:padding="22dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_welcome"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="KitaSehat"
+                    android:textSize="40sp"
+                    android:fontFamily="@font/opensans_bold"
+                    android:textColor="@color/primary"
+                    app:layout_constraintStart_toStartOf="@id/cv_form_login"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_welcome2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nikmati kemudahan akses menuju fasilitas kesehatan"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/opensans_medium"
+                    app:layout_constraintTop_toBottomOf="@id/tv_welcome"
+                    app:layout_constraintStart_toStartOf="@id/tv_welcome"
+                    android:textSize="12sp"
+                    />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_form_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_welcome2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:cardCornerRadius="10dp"
+                    app:strokeColor="@color/border"
+                    app:strokeWidth="1dp"
+                    app:cardElevation="2dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/tv_nik"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text= "@string/str_nik"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/opensans_medium"
+                            android:textColor="@color/black"
+                            />
+
+
+                        <com.dwiki.satusehat.customView.CustomEditNik
+                            android:id="@+id/edt_nik"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:hint="@string/str_nik"
+                            android:inputType="number"
+
+                            android:maxLength="16"
+                            android:fontFamily="@font/opensans_medium"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp">
+
+                            <TextView
+                                android:id="@+id/tv_counter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:visibility="gone"
+                                tools:visibility="visible"
+                                tools:text="16/16"
+                                android:fontFamily="@font/opensans_regular"
+                                android:textColor="@color/gray_dark"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_error_format_nik"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/opensans_medium"
+                                android:layout_weight="2"
+                                android:gravity="end"
+                                android:text="Masukan NIK dengan benar"
+                                android:textColor="@color/red_error"
+                                android:visibility="gone"
+                                tools:visibility="visible" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/tv_pass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Password"
+                            android:layout_marginTop="5dp"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/opensans_medium"
+                            android:textColor="@color/black"
+                            />
+
+                        <com.dwiki.satusehat.customView.CustomEditPassword
+                            android:id="@+id/edt_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:drawableStart="@drawable/ic_pass"
+                            android:fontFamily="@font/opensans_medium"
+                            android:hint="@string/str_password"
+                            android:inputType="textPassword"
+                            android:minHeight="48dp"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            tools:ignore="SpeakableTextPresentCheck" />
+
+                        <TextView
+                            android:id="@+id/tv_error_format_pass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="end"
+                            android:text="Password minimal 6 karakter"
+                            android:fontFamily="@font/opensans_medium"
+                            android:textColor="@color/red_error"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
+
+
+                        <com.dwiki.satusehat.customView.CustomButton
+                            android:id="@+id/btn_masuk"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/masuk"
+                            android:fontFamily="@font/opensans_semibold"
+                            android:layout_marginTop="10dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    app:layout_constraintTop_toBottomOf="@id/cv_form_login"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+                    <TextView
+                        android:id="@+id/tv_no_acc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Belum punya akun?"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_medium"
+                        app:layout_constraintTop_toBottomOf="@id/cv_form_login"
+                        app:layout_constraintStart_toStartOf="@id/cv_form_login" />
+
+                    <TextView
+                        android:id="@+id/btn_tv_daftar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Daftar"
+                        android:textSize="15sp"
+                        android:textColor="@color/primary"
+                        android:layout_marginLeft="4dp"
+                        android:fontFamily="@font/opensans_medium"
+                        app:layout_constraintTop_toBottomOf="@id/cv_form_login"
+                        app:layout_constraintStart_toEndOf="@id/tv_no_acc"
+                        />
+
+                </LinearLayout>
+
+
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

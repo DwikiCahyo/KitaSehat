@@ -1,14 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".loginRegisterPage.FirstRegisterFragment">
+    android:background="@color/bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".loginRegisterFragmentUI.FirstRegisterFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btn_back_button_custom"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/border"
+        app:strokeWidth="1dp"
+        app:cardCornerRadius="12dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@id/tv_daftar_akun">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_gravity="center"
+            android:src="@drawable/back_arrow" />
+    </com.google.android.material.card.MaterialCardView>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+            android:id="@+id/tv_daftar_akun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daftar Akun"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/btn_back_button_custom"
+            app:layout_constraintStart_toStartOf="@id/cv_form_register_akun"
+            android:maxLines="2"
+            android:textSize="30sp"
+            android:fontFamily="@font/opensans_bold"
+            android:textColor="@color/primary" />
 
-</FrameLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_form_register_akun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_daftar_akun"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardCornerRadius="10dp"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="1dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_nik"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text= "@string/str_nik"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/opensans_medium"
+                    android:textColor="@color/black"
+                    />
+
+                <com.dwiki.satusehat.customView.CustomEditNik
+                    android:id="@+id/edt_nik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/opensans_medium"
+                    android:hint="@string/str_nik"
+                    android:inputType="number"
+                    android:maxLength="16"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+                <TextView
+                    android:id="@+id/tv_counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="end"
+                    android:visibility="gone"
+                    tools:text="16/16"
+                    android:fontFamily="@font/opensans_medium"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/opensans_medium"
+                    android:textColor="@color/black" />
+
+                <com.dwiki.satusehat.customView.CustomEditPassword
+                    android:id="@+id/edt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableStart="@drawable/ic_pass"
+                    android:fontFamily="@font/opensans_medium"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:hint="@string/str_password"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:id="@+id/tv_error_format_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="end"
+                    android:text="Password minimal 6 karakter"
+                    android:fontFamily="@font/opensans_medium"
+                    android:textColor="@color/red_error"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_confirm_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Konfirmasi Password"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/opensans_medium"
+                    android:textColor="@color/black" />
+
+                <com.dwiki.satusehat.customView.CustomEditPassword
+                    android:id="@+id/edt_confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/str_konfirmasi_password"
+                    android:maxLines="1"
+                    android:drawableStart="@drawable/ic_pass"
+                    android:fontFamily="@font/opensans_medium"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:id="@+id/tv_error_diff_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="end"
+                    android:text="Password tidak sama"
+                    android:fontFamily="@font/opensans_medium"
+                    android:textColor="@color/red_error"
+                    android:visibility="invisible"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    <com.dwiki.satusehat.customView.CustomButton
+        android:id="@+id/btn_lanjut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/opensans_semibold"
+        android:text="@string/str_lanjut_register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_form_register_akun"
+        app:layout_constraintVertical_bias="0.17"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

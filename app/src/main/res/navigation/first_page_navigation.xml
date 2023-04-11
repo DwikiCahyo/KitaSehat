@@ -3,38 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/first_page_navigation"
-    app:startDestination="@id/firstPageFragment">
+    app:startDestination="@id/firstRegisterFragment">
 
     <fragment
-        android:id="@+id/firstPageFragment"
-        android:name="com.dwiki.satusehat.loginRegisterPage.FirstPageFragment"
-        android:label="fragment_first_page"
-        tools:layout="@layout/fragment_first_page" >
+        android:id="@+id/firstRegisterFragment"
+        android:name="com.dwiki.satusehat.loginRegisterFragmentUI.FirstRegisterFragment"
+        android:label="fragment_first_register"
+        tools:layout="@layout/fragment_first_register" >
         <action
-            android:id="@+id/action_firstPageFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_firstRegisterFragment_to_secondRegisterFragment"
+            app:destination="@id/secondRegisterFragment" />
     </fragment>
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.dwiki.satusehat.loginRegisterPage.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_firstPageFragment2"
-            app:destination="@id/firstPageFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.dwiki.satusehat.loginRegisterPage.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register"
-        >
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            />
-    </fragment>
+        android:id="@+id/secondRegisterFragment"
+        android:name="com.dwiki.satusehat.loginRegisterFragmentUI.SecondRegisterFragment"
+        android:label="fragment_second_register"
+        tools:layout="@layout/fragment_second_register" />
 </navigation>

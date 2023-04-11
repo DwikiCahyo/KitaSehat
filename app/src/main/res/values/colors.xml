@@ -21,4 +21,7 @@
     <color name="primary">#35C2C1</color>
     <color name="yellow_off">#FFBB12</color>
 
+    <color name="gray_card">#6B779A</color>
+    <color name="bg">#FBF1E5</color>
+
 </resources>

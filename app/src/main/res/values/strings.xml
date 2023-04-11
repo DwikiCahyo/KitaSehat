@@ -15,6 +15,8 @@
     <string name="str_pilih_agama">Pilih Agama</string>
     <string name="str_pilih_pekerjaan">Pilih Pekerjaan</string>
     <string name="str_konfirmasi_password">Konfirmasi Password</string>
+    <string name="str_lanjut_register">Lanjut</string>
+    <string name="str_jenis_kelamin">Pilih Jenis Kelamin</string>
 
 
     <!--    String for spinner input-->
@@ -29,9 +31,10 @@
     </string-array>
 
     <string-array name="pekerjaan">
-        <item>BELUM/TIDAK BEKERJA</item>
-        <item>PELAJAR/MAHASISWA</item>
+        <item>BELUM/ TIDAK BEKERJA</item>
+        <item>PELAJAR/ MAHASISWA</item>
         <item>PENSIUNAN</item>
+        <item>PEGAWAI NEGERI SIPIL ( PNS )</item>
         <item>TENTARA NASIONAL INDONESIA</item>
         <item>PETANI/PEKEBUN</item>
         <item>NELAYAN/PERIKANAN</item>
@@ -57,9 +60,14 @@
         <item>STRATA III</item>
     </string-array>
 
+    <string-array name="jenis_kelamin">
+        <item>LAKI - LAKI</item>
+        <item>PEREMPUAN</item>
+    </string-array>
+
     <string-array name="status_perkawinan">
-        <item>Belum Perkawinan</item>
-        <item>Perkawinan</item>
+        <item>Belum Kawin</item>
+        <item>Kawin</item>
         <item>Cerai Hidup</item>
         <item>Cerai Mati</item>
     </string-array>

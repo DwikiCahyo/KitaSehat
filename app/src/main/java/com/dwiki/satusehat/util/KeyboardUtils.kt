@@ -1,4 +1,4 @@
-package com.dwiki.satusehat
+package com.dwiki.satusehat.util
 
 import android.R
 import android.app.Activity

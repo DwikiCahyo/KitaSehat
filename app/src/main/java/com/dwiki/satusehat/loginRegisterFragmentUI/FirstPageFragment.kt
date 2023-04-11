@@ -1,4 +1,4 @@
-package com.dwiki.satusehat.loginRegisterPage
+package com.dwiki.satusehat.loginRegisterFragmentUI
 
 import android.os.Bundle
 import android.os.Handler
@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.navigation.Navigation
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
@@ -41,10 +39,10 @@ class FirstPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadData()
         setUpTransformer()
-        binding.btnLanjut.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_firstPageFragment_to_loginFragment)
-
-        )
+//        binding.btnLanjut.setOnClickListener(
+//            Navigation.createNavigateOnClickListener(R.id.action_firstPageFragment_to_loginFragment)
+//
+//        )
         dots = ArrayList()
         setIndicator()
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
