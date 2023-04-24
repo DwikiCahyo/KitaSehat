@@ -2,6 +2,7 @@ package com.dwiki.satusehat.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -35,13 +36,21 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding:ActivityLoginBinding
     private val loginViewModel:LoginViewModel by viewModels()
     private val stateViewModel: StateViewModel by viewModels()
+    private lateinit var pref: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //init pref
+        pref = getSharedPreferences("login_pref", MODE_PRIVATE)
+
+
         val loading = LoadingDialog(this)
+
+
 
         nikWatcher()
         passwordWatcher()
@@ -59,16 +68,21 @@ class LoginActivity : AppCompatActivity() {
             val nik = binding.edtNik.text.toString()
             val password = binding.edtPassword.text.toString()
             loginViewModel.loginPasien(nik, password).observe(this){ pasienResponse ->
-
                 when(pasienResponse.status){
+
                     Status.SUCCESS -> {
                         loading.dismissDialog()
-                        Utils.correctPass(binding.tvErrorFormatPass)
                         val loginResponse = pasienResponse.data
                         if (loginResponse != null){
+                            Log.d(TAG, loginResponse.message)
+                            //save state user
+                            val editor = pref.edit()
+                            editor.putString("key_token",loginResponse.token)
+                            editor.apply()
+                            //using view model
                             stateViewModel.saveLoginState(true)
                             stateViewModel.saveToken(loginResponse.token)
-                            Log.d(TAG, loginResponse.message)
+                            //if success go to dashboard activity
                             val intent = Intent(this,DashboardActivity::class.java)
                             startActivity(intent)
                             finish()
@@ -77,12 +91,12 @@ class LoginActivity : AppCompatActivity() {
 
                     Status.LOADING ->{
                         loading.startLoading()
-                        Utils.correctPass(binding.tvErrorFormatPass)
-                        Log.d("Main Activity", "Progress Loading")
+                        Log.d(TAG, "Progress Loading")
                     }
 
                     Status.ERROR ->{
                         loading.dismissDialog()
+                        //convert json error message to token
                         val jsonObject = JSONTokener(pasienResponse.message).nextValue() as JSONObject
                         val msg = jsonObject.getString("message")
                         when(msg){
@@ -99,6 +113,17 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        stateViewModel.getLoginState().observe(this){
+            Log.d("Login Activity", it.toString())
+        }
+
+        stateViewModel.getToken().observe(this){
+            Log.d("Login Activity", it.toString())
         }
     }
 

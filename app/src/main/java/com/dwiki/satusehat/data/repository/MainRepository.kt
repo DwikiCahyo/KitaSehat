@@ -7,6 +7,7 @@ import com.dwiki.satusehat.data.api.ApiHelper
 import com.dwiki.satusehat.data.api.ApiService
 import com.dwiki.satusehat.data.responseModel.PasienLoginResponse
 import com.dwiki.satusehat.data.responseModel.PasienProfileResponse
+import com.dwiki.satusehat.data.responseModel.StatusAntreanResponse
 import com.dwiki.satusehat.model.PasienLogin
 import com.dwiki.satusehat.util.Resources
 import kotlinx.coroutines.delay
@@ -14,8 +15,6 @@ import java.util.SimpleTimeZone
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(private val apiHelper: ApiHelper, private val apiService: ApiService) {
-    suspend fun getRumahSakit() = apiHelper.getRumahSakit()
-    suspend fun getLoginResul(nik:String,pass:String) = apiHelper.getLoginResult(nik,pass)
     suspend fun getRegisterResult(
         nik:String,
         nama:String,
@@ -30,38 +29,63 @@ class MainRepository @Inject constructor(private val apiHelper: ApiHelper, priva
         password: String
     ) = apiHelper.getResgisterResult(nik,nama,jenisKelamin,ttl,agama,pekerjaan,pendidikan,statusPerkawinan,noBpjs,noHP,password)
 
+    //get profile pasien
+    suspend fun getProfile(token: String) =  apiHelper.getProfilePasien(token)
+
+
     fun loginResult(nik: String,password: String):LiveData<Resources<PasienLoginResponse>> = liveData {
         emit(Resources.loading(null))
         try {
             val response = apiService.login(nik,password)
             if (response.isSuccessful){
                 emit(Resources.success(response.body()))
-                Log.d(TAG,"succes : ${response.message()}")
+                Log.d(TAG,"success : ${response.message()}")
             } else {
                 emit(Resources.error(response.errorBody()?.string(),null))
-                Log.e(TAG,"error : ${response.errorBody()?.string()}")
+                Log.e(TAG,"Error : ${response.errorBody()?.string()}")
             }
         } catch (e:Exception){
             emit(Resources.error(e.message.toString(),null))
-            Log.e(TAG,"error : ${e.message.toString()}")
+            Log.e(TAG,"error : ${e.cause.toString()}")
         }
     }
 
 
+
+    //Profile Pasien
     fun getProfilePasien(token:String):LiveData<Resources<PasienProfileResponse>> = liveData {
         emit(Resources.loading(null))
         try {
             val response = apiService.getProfilePasien("Bearer $token")
             if (response.isSuccessful){
                 emit(Resources.success(response.body()))
-                Log.d(TAG,"succes : ${response.message()}")
+                Log.d(TAG,"succes profile : ${response.message()}")
             } else{
                 emit(Resources.error(response.errorBody()?.string(),null))
-                Log.e(TAG,"error : ${response.errorBody()?.string()}")
+                Log.e(TAG,"error Profile get data : ${response.errorBody()?.string()}")
             }
         } catch (e:Exception){
             emit(Resources.error(e.message.toString(),null))
-            Log.e(TAG,"error : ${e.message.toString()}")
+            Log.e(TAG,"error Profile : ${e.cause.toString()}")
+        }
+    }
+
+    //Status Antrean
+    fun getStatusAntreanRepository(token:String):LiveData<Resources<StatusAntreanResponse>> = liveData {
+        emit(Resources.loading(null))
+        delay(1000L)
+        try {
+            val response = apiService.getStatusAntreanPasien("Bearer $token")
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes status antrean : ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error Status Antrean : ${response.errorBody()?.string()}")
+            }
+        } catch (e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error Status Antrean : ${e.cause.toString()}")
         }
     }
 

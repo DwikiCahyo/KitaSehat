@@ -1,13 +1,13 @@
 package com.dwiki.satusehat.ui
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.view.View
+import android.os.Looper
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import com.dwiki.satusehat.MainActivity
 import com.dwiki.satusehat.R
 import com.dwiki.satusehat.databinding.ActivitySplashBinding
 import com.dwiki.satusehat.viewModel.StateViewModel
@@ -18,6 +18,7 @@ class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
     private val stateViewModel:StateViewModel by viewModels()
+    private lateinit var pref: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,16 +27,26 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
         //setup status bar
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+        pref = getSharedPreferences("login_pref", MODE_PRIVATE)
 
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             getLoginState()
-        },2000)
+        },3000)
 
     }
 
     private fun getLoginState() {
-        stateViewModel.getLoginState().observe(this) {
-            if (it) {
+        val token  = pref.getString("key_token","KOSONG")
+//        stateViewModel.getLoginState().observe(this) {
+//            if (it) {
+//                startActivity(Intent(this, DashboardActivity::class.java))
+//                finish()
+//            } else {
+//                startActivity(Intent(this, LoginActivity::class.java))
+//                finish()
+//            }
+//        }
+            if (token != "KOSONG") {
                 startActivity(Intent(this, DashboardActivity::class.java))
                 finish()
             } else {
@@ -43,5 +54,5 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             }
         }
+
     }
-}

@@ -41,5 +41,9 @@ data class DataPasien(
 	val tanggalLahir: String,
 
 	@field:SerializedName("status_perkawinan")
-	val statusPerkawinan: String
+	val statusPerkawinan: String,
+
+	@field:SerializedName("foto_profil")
+	val fotoProfil:String
+
 )

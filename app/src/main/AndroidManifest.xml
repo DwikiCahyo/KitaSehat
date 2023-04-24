@@ -18,9 +18,12 @@
         android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"
         tools:targetApi="31">
         <activity
+            android:name=".ui.PendaftaranRumahSakitActivity"
+            android:theme="@style/Theme.SatuSehatActionBar"
+            android:exported="false" />
+        <activity
             android:name=".ui.SplashActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,7 +46,6 @@
             android:name=".ui.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustResize">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

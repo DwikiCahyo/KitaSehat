@@ -1,15 +1,10 @@
 package com.dwiki.satusehat.data.api
 
-import com.dwiki.satusehat.data.responseModel.GetRumahSakitItem
-import com.dwiki.satusehat.data.responseModel.PasienLoginResponse
-import com.dwiki.satusehat.data.responseModel.PasienRegisterResponse
-import com.dwiki.satusehat.data.responseModel.RumahSakit
+import com.dwiki.satusehat.data.responseModel.*
 import retrofit2.Response
 
 interface ApiHelper {
 
-    suspend fun getRumahSakit():Response<RumahSakit>
-    suspend fun getLoginResult(nik:String,password:String):Response<PasienLoginResponse>
     suspend fun getResgisterResult(
         nik: String,
         password: String,
@@ -23,4 +18,8 @@ interface ApiHelper {
         noBpjs:String,
         noHpString: String
     ):Response<PasienRegisterResponse>
+
+    suspend fun getProfilePasien(
+        token:String
+    ):Response<PasienProfileResponse>
 }

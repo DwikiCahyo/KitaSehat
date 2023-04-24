@@ -1,9 +1,6 @@
 package com.dwiki.satusehat.data.api
 
-import com.dwiki.satusehat.data.responseModel.GetRumahSakitItem
-import com.dwiki.satusehat.data.responseModel.PasienLoginResponse
-import com.dwiki.satusehat.data.responseModel.PasienRegisterResponse
-import com.dwiki.satusehat.data.responseModel.RumahSakit
+import com.dwiki.satusehat.data.responseModel.*
 import com.dwiki.satusehat.model.PasienLogin
 import com.dwiki.satusehat.model.PasienSignUp
 import retrofit2.Response
@@ -11,14 +8,6 @@ import javax.inject.Inject
 
 class ApiHelperImpl @Inject constructor(private val apiService: ApiService): ApiHelper {
 
-    override suspend fun getRumahSakit(): Response<RumahSakit> = apiService.getRumahSakit()
-
-    override suspend fun getLoginResult(
-        nik: String,
-        password: String
-    ): Response<PasienLoginResponse> {
-        return apiService.login(nik, password)
-    }
 
     override suspend fun getResgisterResult(
          nik:String,
@@ -34,6 +23,10 @@ class ApiHelperImpl @Inject constructor(private val apiService: ApiService): Api
          password: String
     ): Response<PasienRegisterResponse> {
         return apiService.signup(nik, nama, jenisKelamin, ttl, agama, pekerjaan, pendidikan, statusPerkawinan, noBpjs, noHP, password)
+    }
+
+    override suspend fun getProfilePasien(token: String): Response<PasienProfileResponse> {
+        return apiService.getProfilePasien(token)
     }
 
 

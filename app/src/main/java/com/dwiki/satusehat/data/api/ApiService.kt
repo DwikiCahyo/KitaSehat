@@ -1,9 +1,6 @@
 package com.dwiki.satusehat.data.api
 
-import com.dwiki.satusehat.data.responseModel.PasienLoginResponse
-import com.dwiki.satusehat.data.responseModel.PasienProfileResponse
-import com.dwiki.satusehat.data.responseModel.PasienRegisterResponse
-import com.dwiki.satusehat.data.responseModel.RumahSakit
+import com.dwiki.satusehat.data.responseModel.*
 import com.dwiki.satusehat.model.PasienLogin
 import com.dwiki.satusehat.model.PasienSignUp
 import retrofit2.Response
@@ -45,6 +42,11 @@ interface ApiService {
         @Header("Authorization") token:String
     ):Response<PasienProfileResponse>
 
+    //get Status Antren Pasien
+    @GET("antreanlive")
+    suspend fun getStatusAntreanPasien(
+        @Header("Authorization") token:String
+    ):Response<StatusAntreanResponse>
 
 
 }
