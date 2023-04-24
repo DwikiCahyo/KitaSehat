@@ -163,9 +163,9 @@
                             android:id="@+id/btn_masuk"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/masuk"
+                            android:layout_marginTop="10dp"
                             android:fontFamily="@font/opensans_semibold"
-                            android:layout_marginTop="10dp" />
+                            android:text="@string/masuk" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 

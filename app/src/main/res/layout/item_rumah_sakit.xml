@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginVertical="15dp"
+    android:layout_marginHorizontal="5dp"
+    android:id="@+id/cv_rs"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="15dp"
+    app:strokeWidth="1dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile_rumah_sakit"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                tools:src="@tools:sample/backgrounds/scenic"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_nama_rs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintLeft_toRightOf="@+id/iv_profile_rumah_sakit"
+                android:fontFamily="@font/poppins_medium"
+                android:text="RS Unipdu Medika"
+                android:textColor="@color/text_item_color"
+                android:textSize="16sp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_lokasi_rs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Jombang"
+                android:textColor="@color/text_item_color"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama_rs"
+                app:layout_constraintLeft_toRightOf="@id/iv_profile_rumah_sakit"
+
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>

@@ -7,11 +7,12 @@ import com.dwiki.satusehat.data.api.ApiHelper
 import com.dwiki.satusehat.data.api.ApiService
 import com.dwiki.satusehat.data.responseModel.PasienLoginResponse
 import com.dwiki.satusehat.data.responseModel.PasienProfileResponse
+import com.dwiki.satusehat.data.responseModel.RumahSakitResponse
 import com.dwiki.satusehat.data.responseModel.StatusAntreanResponse
-import com.dwiki.satusehat.model.PasienLogin
 import com.dwiki.satusehat.util.Resources
 import kotlinx.coroutines.delay
-import java.util.SimpleTimeZone
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(private val apiHelper: ApiHelper, private val apiService: ApiService) {
@@ -86,6 +87,24 @@ class MainRepository @Inject constructor(private val apiHelper: ApiHelper, priva
         } catch (e:Exception){
             emit(Resources.error(e.message.toString(),null))
             Log.e(TAG,"error Status Antrean : ${e.cause.toString()}")
+        }
+    }
+
+    //get list rumah sakit
+    fun getRumahSakit(token: String):Flow<Resources<RumahSakitResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.getRumahSakit("Bearer $token")
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes rumah sakit : ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error rumah sakit : ${response.errorBody()?.string()}")
+            }
+        } catch (e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error Status rumah sakit : ${e.cause.toString()}")
         }
     }
 

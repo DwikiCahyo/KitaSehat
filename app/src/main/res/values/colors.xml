@@ -29,6 +29,9 @@
     <color name="card_orange">#FF7854</color>
     <color name="card_yellow">#FFB547</color>
 
+    <color name="backgroud_pendaftaran">#F8FAFF</color>
+    <color name="text_item_color">#080C2F</color>
+
 
     <color name = "shimmer_placeholder">#dddddd</color>
 

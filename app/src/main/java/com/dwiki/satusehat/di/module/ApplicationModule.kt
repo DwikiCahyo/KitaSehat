@@ -7,9 +7,12 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.dwiki.satusehat.BuildConfig
 import com.dwiki.satusehat.PreferenceManager
+import com.dwiki.satusehat.adapter.RumahSakitAdapter
 import com.dwiki.satusehat.data.api.ApiHelper
 import com.dwiki.satusehat.data.api.ApiHelperImpl
 import com.dwiki.satusehat.data.api.ApiService
+import com.dwiki.satusehat.data.responseModel.ListRumahSakitItem
+import com.dwiki.satusehat.ui.LoadingDialog
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -71,6 +74,16 @@ class ApplicationModule {
     fun providePrefManager(dataStore: DataStore<Preferences>): PreferenceManager {
         return PreferenceManager(dataStore)
     }
+
+    @Provides
+    @Singleton
+    fun provideLoadingDialog(@ApplicationContext context: Context):LoadingDialog {
+        return LoadingDialog(context)
+    }
+
+
+
+
 
 
 }

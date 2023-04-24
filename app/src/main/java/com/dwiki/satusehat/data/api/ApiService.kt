@@ -8,8 +8,7 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("rumahsakit")
-    suspend fun getRumahSakit():Response<RumahSakit>
+
 
     //login
     @FormUrlEncoded
@@ -47,6 +46,13 @@ interface ApiService {
     suspend fun getStatusAntreanPasien(
         @Header("Authorization") token:String
     ):Response<StatusAntreanResponse>
+
+    @GET("rumahsakit")
+    suspend fun getRumahSakit(
+        @Header("Authorization") token:String
+    ):Response<RumahSakitResponse>
+
+
 
 
 }
