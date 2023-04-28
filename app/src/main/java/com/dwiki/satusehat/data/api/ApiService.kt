@@ -44,13 +44,29 @@ interface ApiService {
     //get Status Antren Pasien
     @GET("antreanlive")
     suspend fun getStatusAntreanPasien(
-        @Header("Authorization") token:String
+        @Header("Authorization") token:String,
     ):Response<StatusAntreanResponse>
 
     @GET("rumahsakit")
     suspend fun getRumahSakit(
-        @Header("Authorization") token:String
+        @Header("Authorization") token:String,
+
     ):Response<RumahSakitResponse>
+
+    @GET("fasilitasrumahsakit")
+    suspend fun getFasilitasRumahSakit(
+        @Header("Authorization") token:String,
+        @Query("rumah_sakit_id") rumah_sakit_id:String
+    ):Response<FasilitasRumahSakitResponse>
+
+    @FormUrlEncoded
+    @POST("{jenisAntrean}")
+    suspend fun postRegistrasiAntrean(
+        @Path("jenisAntrean") jenisAntrean:String,
+        @Header("Authorization") token:String,
+        @Field("fasilitas_rumah_sakit_id") fasilitas_rumah_sakit_id:String,
+        @Field("keluhan_awal") keluhan_awal:String,
+    ):Response<RegistrasiAntreanResponse>
 
 
 

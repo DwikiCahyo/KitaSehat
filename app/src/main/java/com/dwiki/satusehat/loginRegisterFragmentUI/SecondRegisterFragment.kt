@@ -2,7 +2,9 @@ package com.dwiki.satusehat.loginRegisterFragmentUI
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +19,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.dwiki.satusehat.util.KeyboardUtils
 import com.dwiki.satusehat.R
+import com.dwiki.satusehat.data.responseModel.DataFasilitasRumahSakitItem
+import com.dwiki.satusehat.data.responseModel.ListRumahSakitItem
 import com.dwiki.satusehat.util.Utils
 import com.dwiki.satusehat.databinding.FragmentSecondRegisterBinding
 import com.dwiki.satusehat.ui.DashboardActivity
@@ -36,8 +40,7 @@ class SecondRegisterFragment : Fragment() {
 
     private var _binding: FragmentSecondRegisterBinding? = null
     private val binding get() = _binding!!
-
-
+    private lateinit var pref: SharedPreferences
 
     private val keyboardUtils = KeyboardUtils
     private val utils =  Utils
@@ -68,6 +71,8 @@ class SecondRegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         val hintAgama = resources.getStringArray(R.array.agama)
         val hintPekerjaan = resources.getStringArray(R.array.pekerjaan)
         val hintPerkawinan = resources.getStringArray(R.array.status_perkawinan)
@@ -84,6 +89,8 @@ class SecondRegisterFragment : Fragment() {
         setDatePicker()
         phoneNumberWatcher()
         noBPJSWatcherr()
+
+        pref = requireActivity().getSharedPreferences("login_pref", Context.MODE_PRIVATE)
 
         binding.btnSimpanData.setOnClickListener {
 
@@ -108,6 +115,10 @@ class SecondRegisterFragment : Fragment() {
                         if (registerResponse!=null){
                             stateViewModel.saveLoginState(true)
                             stateViewModel.saveToken(registerResponse.token)
+                            //get new token
+                            val editor = pref.edit()
+                            editor.putString("key_token",registerResponse.token)
+                            editor.apply()
                             Log.d("Register Fragment", "Register Success")
                             val intent = Intent(requireContext(),DashboardActivity::class.java)
                             startActivity(intent)
@@ -226,7 +237,8 @@ class SecondRegisterFragment : Fragment() {
 
             val datePickerDialog = DatePickerDialog(requireContext(),
                 { _, year, month, dayOfMonth ->
-                    tanggalLahir = "$dayOfMonth/${month + 1}/$year"
+//                    tanggalLahir = "$dayOfMonth/${month + 1}/$year"
+                    tanggalLahir = "$year-$month-$dayOfMonth"
                     binding.edtTanggalLahir.setText(tanggalLahir)
                 },
                 year, month, day,

@@ -286,15 +286,24 @@
                         android:layout_marginTop="10dp"
                         android:layout_gravity="center"
                         app:cardBackgroundColor="@color/card_purple"
-                        app:cardCornerRadius="8dp" />
+                        app:cardCornerRadius="50dp" >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_hospital"
+                            android:padding="15dp"
+                            android:contentDescription="hospitals" />
+
+                    </com.google.android.material.card.MaterialCardView>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_width="70dp"
+                        android:layout_height="60dp"
+                        android:gravity="center"
+                        android:maxLines="2"
                         android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/black"
-                        android:text="Pendaftaran"
+                        android:text="Rumah Sakit"
                         android:layout_gravity="center"
                         android:textSize="12sp" />
                 </LinearLayout>

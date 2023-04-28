@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginVertical="15dp"
+    android:layout_marginHorizontal="10dp"
+    android:id="@+id/cv_rs_map"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="15dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+       <LinearLayout
+           android:id="@+id/layout_info_rs"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@color/primary"
+           app:layout_constraintStart_toStartOf="parent"
+           android:paddingHorizontal="10dp"
+           android:paddingVertical="5dp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           android:orientation="vertical"
+           >
+
+           <TextView
+               android:id="@+id/tv_nama_rs"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:fontFamily="@font/poppins_bold"
+               android:text="RS Unipdu Medika"
+               android:textColor="@color/white"
+               android:textSize="14sp" />
+
+           <TextView
+               android:id="@+id/tv_lokasi_rs"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:fontFamily="@font/poppins_regular"
+               android:text="Jombang"
+               android:textColor="@color/white"
+               android:textSize="12sp" />
+
+
+       </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:gravity="center"
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_info_rs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="horizontal">
+
+            <com.dwiki.satusehat.customView.CustomButton
+                android:id="@+id/btn_detail"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="5dp"
+                android:fontFamily="@font/poppins_medium"
+                android:drawableStart="@drawable/ic_detail"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:text="Detail" />
+
+            <com.dwiki.satusehat.customView.CustomButton
+                android:id="@+id/btn_lokasi"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="5dp"
+                android:drawableStart="@drawable/ic_map"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:text="Lokasi" />
+
+        </LinearLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

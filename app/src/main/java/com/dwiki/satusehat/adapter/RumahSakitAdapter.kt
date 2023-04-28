@@ -1,5 +1,7 @@
 package com.dwiki.satusehat.adapter
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -10,13 +12,15 @@ import com.bumptech.glide.Glide
 import com.dwiki.satusehat.R
 import com.dwiki.satusehat.data.responseModel.ListRumahSakitItem
 import com.dwiki.satusehat.databinding.ItemRumahSakitBinding
+import com.dwiki.satusehat.model.RumahSakit
+import com.dwiki.satusehat.ui.pendaftaran.PendaftaranAntreanActivity
 
 
 class RumahSakitAdapter(private var listRs:List<ListRumahSakitItem>):RecyclerView.Adapter<RumahSakitAdapter.ViewHolder>() {
 
 
 
-    class ViewHolder(val binding: ItemRumahSakitBinding):RecyclerView.ViewHolder(binding.root) {}
+   inner class ViewHolder(val binding: ItemRumahSakitBinding):RecyclerView.ViewHolder(binding.root) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
          val view = ItemRumahSakitBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -34,8 +38,18 @@ class RumahSakitAdapter(private var listRs:List<ListRumahSakitItem>):RecyclerVie
             holder.binding.ivProfileRumahSakit.setImageResource(R.drawable.ic_no_image)
         }
         holder.binding.cvRs.setOnClickListener {
+            val id = listRs[position].id
             val name = listRs[position].nama
-            Toast.makeText(holder.itemView.context, "Kamu memilih $name", Toast.LENGTH_SHORT).show()
+            val daerah = listRs[position].daerah.namaDaerah
+            val foto = listRs[position].fotoRumahSakit
+
+            val rumahSakit = RumahSakit(id,name,daerah,foto)
+
+
+            val intent = Intent(holder.itemView.context,PendaftaranAntreanActivity::class.java)
+            intent.putExtra("data_rs",rumahSakit)
+            holder.itemView.context.startActivity(intent)
+
         }
 
 

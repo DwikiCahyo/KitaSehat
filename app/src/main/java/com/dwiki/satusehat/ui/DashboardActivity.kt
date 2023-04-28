@@ -12,12 +12,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import com.bumptech.glide.Glide
 import com.dwiki.satusehat.PreferenceManager
 import com.dwiki.satusehat.R
 import com.dwiki.satusehat.databinding.DashboardActivityBinding
+import com.dwiki.satusehat.ui.dialog.DialogAlreadyRegister
 import com.dwiki.satusehat.util.Status
 import com.dwiki.satusehat.viewModel.PasienProfileViewModel
 import com.dwiki.satusehat.viewModel.StateViewModel
@@ -54,7 +56,6 @@ class DashboardActivity : AppCompatActivity()  {
         val token  = pref.getString("key_token","KOSONG")
         if (token != null) {
             getProfilePasien(token)
-//            getStatusAntrean(token)
         }
 
 
@@ -77,17 +78,16 @@ class DashboardActivity : AppCompatActivity()  {
             finish()
         }
 
-        binding.cvLayoutAntrean.setOnClickListener {
-            Toast.makeText(this,"Clickkeerrr",Toast.LENGTH_SHORT).show()
+       //set click for card number 2 in dashboard
+        binding.cvLayanan2.setOnClickListener {
+            val intent = Intent(this,DetailRumahSakitActivity::class.java)
+            startActivity(intent)
         }
 
         //set opactiy for text color
         binding.tvSelamatDatang.alpha = 0.75f
 
-        binding.cvLayanan1.setOnClickListener {
-            val intent = Intent(this,PendaftaranRumahSakitActivity::class.java)
-            startActivity(intent)
-        }
+
     }
 
     private fun getStatusAntrean(token: String){
@@ -96,6 +96,7 @@ class DashboardActivity : AppCompatActivity()  {
                 Status.SUCCESS -> {
                     val antreanResponse = antrean.data
                     if (antreanResponse != null){
+                        isRegister(true)
                         Log.d(TAG, "message : ${antreanResponse.message}")
                         val dataAntrean = antreanResponse.data
                         //binding for card antrean
@@ -116,10 +117,12 @@ class DashboardActivity : AppCompatActivity()  {
                     Log.d(TAG, "Loading")
                 }
                 Status.ERROR -> {
+                    isRegister(false)
                     binding.antreanPasien.visibility = View.VISIBLE
                     binding.tvStatusAntrian.text = "Anda Belum Terdaftar"
-                    binding.tvRumahSakit.text ="Silahkan mendaftar layanan"
+                    binding.tvRumahSakit.text ="Silahkan mendaftar"
                     binding.tvNoAntrean.text = "i"
+                    binding.tvFasilitasRs.visibility = View.GONE
                     binding.shimmerFrameLayout.visibility = View.GONE
                     Log.e(TAG, "Error : ${antrean.message}")
                 }
@@ -164,6 +167,20 @@ class DashboardActivity : AppCompatActivity()  {
                     }
                 }
             }
+    }
+
+    private fun isRegister(isRegister:Boolean){
+        if (isRegister){
+            binding.cvLayanan1.setOnClickListener {
+                DialogAlreadyRegister().show(supportFragmentManager,"DialogAlreadyRegister")
+            }
+        } else{
+            binding.cvLayanan1.setOnClickListener {
+                val intent = Intent(this,PendaftaranRumahSakitActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
     }
 
     override fun onResume() {

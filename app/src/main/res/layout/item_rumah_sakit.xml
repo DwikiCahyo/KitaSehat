@@ -49,9 +49,9 @@
                 android:textColor="@color/text_item_color"
                 android:textSize="12sp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nama_rs"
-                app:layout_constraintLeft_toRightOf="@id/iv_profile_rumah_sakit"
+                app:layout_constraintLeft_toRightOf="@id/iv_profile_rumah_sakit" />
 
-                />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

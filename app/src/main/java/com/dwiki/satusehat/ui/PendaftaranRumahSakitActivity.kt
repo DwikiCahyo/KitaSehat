@@ -28,7 +28,6 @@ class PendaftaranRumahSakitActivity : AppCompatActivity() {
     //call shared pref
     private lateinit var pref: SharedPreferences
     private val viewModel:RumahSakitViewModel by viewModels()
-    @Inject lateinit var loadingDialog:LoadingDialog
     private lateinit var rsAdapter:RumahSakitAdapter
 
 
@@ -40,18 +39,18 @@ class PendaftaranRumahSakitActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this,R.color.white)
         supportActionBar?.title = "Pilih rumah sakit"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        rsAdapter = RumahSakitAdapter(ArrayList())
-        initRecycleView()
 
         val colorDrawable = ColorDrawable(ContextCompat.getColor(this,R.color.white))
         supportActionBar?.setBackgroundDrawable(colorDrawable)
+
+        //setup for rv
+        rsAdapter = RumahSakitAdapter(ArrayList())
+        initRecycleView()
 
         //init pref
         pref = getSharedPreferences("login_pref", MODE_PRIVATE)
         val token = pref.getString("key_token","KOSONG")
 
-        loadingDialog = LoadingDialog(this)
-//       Log.d(TAG, token!!)
         if (token != null) {
             getListRumahsakit(token)
         }
@@ -68,12 +67,10 @@ class PendaftaranRumahSakitActivity : AppCompatActivity() {
 
     private fun getListRumahsakit(token:String) {
         viewModel.getRumahSakit(token)
-
         viewModel.responseRumahSakit.observe(this){ listRS ->
             when(listRS.status){
 
                 Status.SUCCESS->{
-//                    loadingDialog.dismissDialog()
                     val rumahSakitResponse = listRS.data
                     if(rumahSakitResponse != null){
                         binding.layoutContentList.visibility = View.VISIBLE
@@ -91,13 +88,11 @@ class PendaftaranRumahSakitActivity : AppCompatActivity() {
                     binding.shimmerFrameLayout.visibility = View.GONE
                     binding.rvListRs.visibility = View.GONE
                     binding.tvTersediaRs.text = "Tidak ada data"
-//                    loadingDialog.dismissDialog()
                     Log.e(DashboardActivity.TAG, "Error : ${listRS.message}")
                 }
                 Status.LOADING->{
                     binding.layoutContentList.visibility = View.INVISIBLE
                     binding.shimmerFrameLayout.startShimmer()
-//                    loadingDialog.startLoading()
                     Log.d(TAG, "Loading")
                 }
             }

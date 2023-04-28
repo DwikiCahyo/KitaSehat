@@ -5,10 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.dwiki.satusehat.data.api.ApiHelper
 import com.dwiki.satusehat.data.api.ApiService
-import com.dwiki.satusehat.data.responseModel.PasienLoginResponse
-import com.dwiki.satusehat.data.responseModel.PasienProfileResponse
-import com.dwiki.satusehat.data.responseModel.RumahSakitResponse
-import com.dwiki.satusehat.data.responseModel.StatusAntreanResponse
+import com.dwiki.satusehat.data.responseModel.*
 import com.dwiki.satusehat.util.Resources
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -105,6 +102,40 @@ class MainRepository @Inject constructor(private val apiHelper: ApiHelper, priva
         } catch (e:Exception){
             emit(Resources.error(e.message.toString(),null))
             Log.e(TAG,"error Status rumah sakit : ${e.cause.toString()}")
+        }
+    }
+
+    fun getFasilitasRumahSakit(token: String, idRumahSakit: String):Flow<Resources<FasilitasRumahSakitResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.getFasilitasRumahSakit("Bearer $token",idRumahSakit)
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes fasilitas rumah sakit: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error fasilitas rumah sakit : ${response.errorBody()?.string()}")
+            }
+        } catch (e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error Status fasilitas rumah sakit : ${e.cause.toString()}")
+        }
+    }
+
+    fun postRegistrasiPasien(jenisAntrean:String,token: String,idFasilitas:String,keluhan:String):Flow<Resources<RegistrasiAntreanResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.postRegistrasiAntrean(jenisAntrean,"Bearer $token",idFasilitas,keluhan)
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes registrasi antrean: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error registrasi antreean : ${response.errorBody()?.string()}")
+            }
+        } catch (e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error Status registrasi antrean : ${e.cause.toString()}")
         }
     }
 

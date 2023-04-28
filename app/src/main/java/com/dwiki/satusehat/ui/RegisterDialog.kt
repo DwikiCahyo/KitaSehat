@@ -12,6 +12,8 @@ import android.view.View
 import androidx.fragment.app.DialogFragment
 import com.dwiki.satusehat.databinding.DialogRegisterBinding
 
+
+
 class RegisterDialog:DialogFragment() {
 
     private lateinit var binding:DialogRegisterBinding

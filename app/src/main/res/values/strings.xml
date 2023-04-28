@@ -18,6 +18,8 @@
     <string name="str_lanjut_register">Lanjut</string>
     <string name="str_jenis_kelamin">Pilih Jenis Kelamin</string>
     <string name="selamat_datang">Selamat datang, %s</string>
+    <string name="tab_text_bpjs">BPJS</string>
+    <string name="tab_text_umum">Umum</string>
 
 
     <!--    String for spinner input-->

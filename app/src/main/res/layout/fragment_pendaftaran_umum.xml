@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:padding="15dp"
+    tools:context=".ui.pendaftaran.PendaftaranUmumFragment">
+
+    <TextView
+        android:id="@+id/tv_keluhan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keluhan Awal:"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="3dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.dwiki.satusehat.customView.CustomEditText
+        android:id="@+id/edt_keluhan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/custom_edt_margin_top"
+        app:layout_constraintTop_toBottomOf="@id/tv_keluhan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/opensans_medium"
+        android:hint="Keluhan"
+        android:lines="3"
+        android:gravity="top"
+        android:maxLength="200"
+        android:inputType="textMultiLine"
+        android:overScrollMode="always"
+        android:scrollbarStyle="insideInset"
+        android:scrollHorizontally="false"
+        android:minHeight="48dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp" />
+
+
+
+    <TextView
+        android:id="@+id/tv_pilih_fasilitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih Fasilitas"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="3dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/edt_keluhan"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/form_fasilitas"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/custom_edt_margin_top"
+        app:layout_constraintTop_toBottomOf="@id/tv_pilih_fasilitas">
+
+        <AutoCompleteTextView
+            android:id="@+id/edt_fasilitaas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/custom_border_edit_text"
+            android:inputType="none"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.dwiki.satusehat.customView.CustomButton
+        android:id="@+id/btn_simpan_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Daftar"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/form_fasilitas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
