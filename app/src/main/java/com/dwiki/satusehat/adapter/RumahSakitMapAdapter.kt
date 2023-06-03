@@ -21,8 +21,6 @@ class RumahSakitMapAdapter(private var listRumahSakit:List<ListRumahSakitItem>):
         this.onLocationClickCallback = onLocationClickCallback
     }
 
-
-
     fun getItem(item:List<ListRumahSakitItem>){
         this.listRumahSakit = item
     }

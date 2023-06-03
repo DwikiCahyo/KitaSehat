@@ -8,8 +8,6 @@ import retrofit2.http.*
 
 interface ApiService {
 
-
-
     //login
     @FormUrlEncoded
     @POST("login")
@@ -67,6 +65,36 @@ interface ApiService {
         @Field("fasilitas_rumah_sakit_id") fasilitas_rumah_sakit_id:String,
         @Field("keluhan_awal") keluhan_awal:String,
     ):Response<RegistrasiAntreanResponse>
+
+    @GET("riwayatantreanbpjs")
+    suspend fun getRiwayatAntrean(
+        @Header("Authorization") token:String,
+    ):Response<RiwayatPendaftaranResponse>
+
+    @GET("riwayatantreanumum")
+    suspend fun getRiwayatAntreanUmum(
+        @Header("Authorization") token: String
+    ):Response<RiwayatPendaftaranUmumResponse>
+
+    @GET("antreanbpjs")
+    suspend fun getDetailRiwayatBpjs(
+        @Header("Authorization") token: String,
+        @Query("id") id:Int
+    ):Response<DetailRiwayatResponse>
+
+    @GET("antreanumum")
+    suspend fun getDetailRiwayatUmum(
+        @Header("Authorization") token: String,
+        @Query("id") id:Int
+    ):Response<DetailRiwayatResponse>
+
+    @FormUrlEncoded
+    @POST("rumahsakit")
+    suspend fun getDetailRumahSakit(
+        @Header("Authorization") token: String,
+        @Field("rumah_sakit_id") rumah_sakit_id:Int
+    ):Response<DetailRumahSakitResponse>
+
 
 
 

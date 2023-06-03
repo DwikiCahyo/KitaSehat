@@ -4,21 +4,31 @@ import android.Manifest
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.util.Util
 import com.dwiki.satusehat.R
 import com.dwiki.satusehat.adapter.RumahSakitAdapter
 import com.dwiki.satusehat.adapter.RumahSakitMapAdapter
 import com.dwiki.satusehat.data.responseModel.ListRumahSakitItem
 import com.dwiki.satusehat.databinding.ActivityDetailRumahSakitBinding
+import com.dwiki.satusehat.ui.dialog.DialogDetailRumahSakit
 import com.dwiki.satusehat.util.Status
 import com.dwiki.satusehat.util.Utils
 import com.dwiki.satusehat.viewModel.RumahSakitViewModel
@@ -26,18 +36,18 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import dagger.hilt.android.AndroidEntryPoint
+import javax.annotation.meta.When
 
 @AndroidEntryPoint
-class DetailRumahSakitActivity : AppCompatActivity() {
+class DetailRumahSakitActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var gMap: GoogleMap
     private lateinit var binding:ActivityDetailRumahSakitBinding
     private lateinit var rsAdapter: RumahSakitMapAdapter
     private lateinit var pref: SharedPreferences
     private val viewModel: RumahSakitViewModel by viewModels()
+    lateinit var token: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +55,7 @@ class DetailRumahSakitActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         window.statusBarColor = ContextCompat.getColor(this,R.color.white)
-        supportActionBar?.title = "Rumah Sakit"
+        supportActionBar?.title = "Informasi Rumah Sakit"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val colorDrawable = ColorDrawable(ContextCompat.getColor(this,R.color.white))
@@ -53,7 +63,7 @@ class DetailRumahSakitActivity : AppCompatActivity() {
 
         //get token
         pref = getSharedPreferences("login_pref", MODE_PRIVATE)
-        val token = pref.getString("key_token","KOSONG")
+        token = pref.getString("key_token","KOSONG")!!
 
         if (token != null) {
             getListRumahsakit(token)
@@ -73,65 +83,94 @@ class DetailRumahSakitActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onMapReady(googleMap: GoogleMap) {
-//        gMap = googleMap
-//        gMap.setMapStyle(
-//            MapStyleOptions.loadRawResourceStyle(
-//                this,
-//                R.raw.map_style
-//            )
-//        )
-//        gMap.uiSettings.isZoomControlsEnabled = true
-//        gMap.uiSettings.isIndoorLevelPickerEnabled = true
-//        gMap.uiSettings.isCompassEnabled = true
-//        gMap.uiSettings.isMapToolbarEnabled = true
-//
-//        val dicodingSpace = LatLng(-6.8957643, 107.6338462)
-//        gMap.addMarker(
-//            MarkerOptions()
-//                .position(dicodingSpace)
-//                .title("Dicoding Space")
-//                .snippet("Batik Kumeli No.50")
-//        )
-//        gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(dicodingSpace, 15f))
-//
-//        getMyLocation()
-//    }
+    override fun onMapReady(googleMap: GoogleMap) {
+
+
+        gMap = googleMap
+        gMap.setMapStyle(
+            MapStyleOptions.loadRawResourceStyle(
+                this,
+                R.raw.map_style
+            )
+        )
+        gMap.uiSettings.isZoomControlsEnabled = true
+        gMap.uiSettings.isIndoorLevelPickerEnabled = true
+        gMap.uiSettings.isCompassEnabled = true
+        gMap.uiSettings.isMapToolbarEnabled = true
+
+        getMyLocation()
+        getListRumahsakit(token)
+    }
 
     private fun getListRumahsakit(token:String) {
+        val boundsBuilder = LatLngBounds.Builder()
         viewModel.getRumahSakit(token)
-        viewModel.responseRumahSakit.observe(this){ listRS ->
-            when(listRS.status){
+        viewModel.responseRumahSakit.observe(this){ list ->
+            when(list.status){
 
                 Status.SUCCESS->{
-                    val rumahSakitResponse = listRS.data
+                    val rumahSakitResponse = list.data
                     if(rumahSakitResponse != null){
                         val listRs = rumahSakitResponse.listRumahSakit
                         rsAdapter.getItem(listRs)
                         initRecycleView()
+
+//                        for (i in listRs.indices) {
+//                            val lon = listRs[i].koordinat.coordinates[0] as Double
+//                            val lat = listRs[i].koordinat.coordinates[1] as Double
+//
+//                            val latLon = LatLng(lon, lat)
+//                            Log.d("Detail Rs", "$latLon")
+//
+//                            gMap.addMarker(
+//                                MarkerOptions()
+//                                    .position(latLon)
+//                                    .title(listRs[i].nama)
+//                                    .snippet("${listRs[i].daerah.jenis}, ${listRs[i].daerah.namaDaerah}")
+//                                    .icon(vectorToBitmap(R.drawable.baseline_local_hospital_24, Color.RED))
+//                            )
+//
+//                            boundsBuilder.include(latLon)
+//                            val bounds: LatLngBounds = boundsBuilder.build()
+//                            gMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 64))
+//
+//                        }
+
+                        //button onclick
                         rsAdapter.setOnItemClickCallback(object :RumahSakitMapAdapter.OnItemClickCallback{
                             override fun onItemClicked(listRumahSakit: ListRumahSakitItem) {
-                               Utils.makeToast(this@DetailRumahSakitActivity, listRumahSakit.nama)
+                                val intent = Intent(this@DetailRumahSakitActivity,DetailRsActivity::class.java)
+                                val bundle = Bundle()
+                                bundle.putString("nama", listRumahSakit.nama)
+                                bundle.putString("namaDaerah",listRumahSakit.daerah.namaDaerah)
+                                bundle.putString("jenisDaerah",listRumahSakit.daerah.jenis)
+                                bundle.putInt("id",listRumahSakit.id)
+                                bundle.putString("url",listRumahSakit.fotoRumahSakit)
+                                intent.putExtras(bundle)
+                                startActivity(intent)
                             }
                         })
 
                         rsAdapter.setOnLocationClickCallBack(object :RumahSakitMapAdapter.OnMapClickCallback{
                             override fun onMapClicked(listRumahSakit: ListRumahSakitItem) {
-                             val lon =  listRumahSakit.koordinat.coordinates[0]
-                             val lat =  listRumahSakit.koordinat.coordinates[1]
-                             val uri = Uri.parse("google.navigation:q=$lon,$lat&mode=d")
-                             val mapIntent = Intent(Intent.ACTION_VIEW,uri)
-                             startActivity(mapIntent)
-                             Utils.makeToast(this@DetailRumahSakitActivity,"Lon : $lon , Lat : $lat")
-                            }
 
+                            if (listRumahSakit.koordinat != null) {
+                                val lon =  listRumahSakit.koordinat.coordinates[0]
+                                val lat =  listRumahSakit.koordinat.coordinates[1]
+                                val uri = Uri.parse("google.navigation:q=$lon,$lat&mode=d")
+                                val mapIntent = Intent(Intent.ACTION_VIEW,uri)
+                                startActivity(mapIntent)
+                            } else{
+                                Utils.makeToast(this@DetailRumahSakitActivity,"Koordinat tidak ditemukan")
+                            }
+                            }
                         })
                         Log.d(PendaftaranRumahSakitActivity.TAG,rumahSakitResponse.message)
                     }
                 }
                 Status.ERROR->{
 
-                    Log.e(DashboardActivity.TAG, "Error : ${listRS.message}")
+                    Log.e(DashboardActivity.TAG, "Error : ${list.message}")
                 }
                 Status.LOADING->{
 
@@ -140,6 +179,25 @@ class DetailRumahSakitActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+//    convert vector to bitmap for icon in map
+    private fun vectorToBitmap(@DrawableRes id: Int, @ColorInt color: Int): BitmapDescriptor {
+        val vectorDrawable = ResourcesCompat.getDrawable(resources, id, null)
+        if (vectorDrawable == null) {
+            Log.e("BitmapHelper", "Resource not found")
+            return BitmapDescriptorFactory.defaultMarker()
+        }
+        val bitmap = Bitmap.createBitmap(
+            vectorDrawable.intrinsicWidth,
+            vectorDrawable.intrinsicHeight,
+            Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(bitmap)
+        vectorDrawable.setBounds(0, 0, canvas.width, canvas.height)
+        DrawableCompat.setTint(vectorDrawable, color)
+        vectorDrawable.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 
     private val requestPermissionLauncher = registerForActivityResult(

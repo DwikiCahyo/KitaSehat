@@ -86,13 +86,13 @@ class PendaftaranUmumFragment : Fragment() {
                     }
                     binding.edtFasilitaas.apply {
                         val namaFasilitas = listFasilitas.map {
-                            it.fasilitaNamaLayanan
+                            it.fasilitasNamaLayanan
                         }
                         val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, namaFasilitas)
                         setAdapter(adapter)
                         hint = "Pilih Fasilitas"
                         onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, _ ->
-                                if (listFasilitas[position].fasilitaNamaLayanan == namaFasilitas[position]){
+                                if (listFasilitas[position].fasilitasNamaLayanan == namaFasilitas[position]){
                                     idFasilitas = listFasilitas[position].id.toString()
                                     Utils.makeToast(requireContext(),idFasilitas)
                                 }

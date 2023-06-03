@@ -87,10 +87,8 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     //Maps
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
-    //open street
-    implementation 'org.osmdroid:osmdroid-android:6.1.11'
-
-
+    //TimeLine View
+    implementation 'com.github.vipulasri:timelineview:1.1.5'
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'

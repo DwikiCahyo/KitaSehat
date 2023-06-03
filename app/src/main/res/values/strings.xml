@@ -22,6 +22,12 @@
     <string name="tab_text_umum">Umum</string>
 
 
+    <string-array name="filter_options">
+        <item>BPJS</item>
+        <item>Umum</item>
+    </string-array>
+
+
     <!--    String for spinner input-->
 
     <string-array name="agama">

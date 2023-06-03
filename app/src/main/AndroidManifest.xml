@@ -7,7 +7,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+
+
     <application
+
         android:name=".Application"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -19,15 +22,27 @@
         android:theme="@style/Theme.SatuSehat"
         android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"
         tools:targetApi="31">
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value=" " />
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <activity
+            android:name=".ui.DetailRsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.DetailRiwayatActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SatuSehatActionBar" />
+        <activity
+            android:name=".ui.RiwayatPendaftaranActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SatuSehatActionBar" />
+
+<!--        <meta-data-->
+<!--            android:name="com.google.android.geo.API_KEY"-->
+<!--            android:value="AIzaSyB4x9zj21G1QI4E-SZGU4K8Ge-ZEX9VUCQ" />-->
 
         <activity
             android:name=".ui.DetailRumahSakitActivity"
             android:exported="false"
-            android:theme="@style/Theme.SatuSehatActionBar"
-            />
+            android:theme="@style/Theme.SatuSehatActionBar" />
         <activity
             android:name=".ui.pendaftaran.PendaftaranAntreanActivity"
             android:exported="false"

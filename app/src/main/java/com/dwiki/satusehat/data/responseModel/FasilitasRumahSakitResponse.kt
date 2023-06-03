@@ -13,8 +13,8 @@ data class FasilitasRumahSakitResponse(
 
 data class DataFasilitasRumahSakitItem(
 
-	@field:SerializedName("fasilita.nama_layanan")
-	val fasilitaNamaLayanan: String,
+	@field:SerializedName("fasilitas.nama_layanan")
+	val fasilitasNamaLayanan: String,
 
 	@field:SerializedName("id")
 	val id: Int

@@ -139,6 +139,93 @@ class MainRepository @Inject constructor(private val apiHelper: ApiHelper, priva
         }
     }
 
+    fun getRiwayatPendaftaran(token:String):Flow<Resources<RiwayatPendaftaranResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.getRiwayatAntrean("Bearer $token")
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes riwayat antrean bpjs: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error riwayat antrean bpjs : ${response.errorBody()?.string()}")
+            }
+        } catch (e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error Status riwayat antrean bpjs : ${e.cause.toString()}")
+        }
+
+    }
+
+    fun getRiwayatPendaftaranUmum(token:String):Flow<Resources<RiwayatPendaftaranUmumResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.getRiwayatAntreanUmum("Bearer $token")
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes riwayat antrean umum: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error riwayat antrean umum: ${response.errorBody()?.string()}")
+            }
+        } catch (e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error Status riwayat antrean umum : ${e.cause.toString()}")
+        }
+
+    }
+
+    fun getDetailRiwayatBpjs(token: String,idRiwayat:Int):Flow<Resources<DetailRiwayatResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.getDetailRiwayatBpjs("Bearer $token",idRiwayat)
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes detail riwayat bpjs: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error detail riwayat bpjs : ${response.errorBody()?.string()}")
+            }
+        } catch (e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error Status riwayat antrean bpjs : ${e.cause.toString()}")
+        }
+    }
+
+    fun getDetailRiwayatUmum(token: String,idRiwayat: Int):Flow<Resources<DetailRiwayatResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.getDetailRiwayatUmum("Bearer $token",idRiwayat)
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes detail riwayat umum: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error detail riwayat umum : ${response.errorBody()?.string()}")
+            }
+        } catch (e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error Status riwayat antrean umum : ${e.cause.toString()}")
+        }
+    }
+
+    fun getDetailRumahSakit(token:String,idRumahSakit:Int):Flow<Resources<DetailRumahSakitResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.getDetailRumahSakit("Bearer $token",idRumahSakit)
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes detail rumah sakit: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error detail rumah sakit: ${response.errorBody()?.string()}")
+            }
+        }catch(e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error Status detail rumah sakit : ${e.cause.toString()}")
+        }
+    }
+
 
     companion object {
         private const val TAG = "Repository"

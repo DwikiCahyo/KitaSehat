@@ -84,6 +84,11 @@ class DashboardActivity : AppCompatActivity()  {
             startActivity(intent)
         }
 
+        binding.cvLayanan3.setOnClickListener {
+            val intent = Intent(this,RiwayatPendaftaranActivity::class.java)
+            startActivity(intent)
+        }
+
         //set opactiy for text color
         binding.tvSelamatDatang.alpha = 0.75f
 

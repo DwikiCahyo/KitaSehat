@@ -8,7 +8,7 @@
     android:layout_marginHorizontal="10dp"
     android:id="@+id/cv_rs_map"
     app:cardElevation="5dp"
-    app:cardCornerRadius="15dp">
+    app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                 android:textAllCaps="false"
                 android:text="Detail" />
 
-            <com.dwiki.satusehat.customView.CustomButton
+            <com.dwiki.satusehat.customView.CustomSecondaryButton
                 android:id="@+id/btn_lokasi"
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:textSize="14sp"
                 android:textAllCaps="false"
-                android:text="Lokasi" />
+                android:text="Rute" />
 
         </LinearLayout>
 

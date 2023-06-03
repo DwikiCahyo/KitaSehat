@@ -89,20 +89,20 @@ class PendaftaranBpjsFragment : Fragment() {
                     //convert response to list string for adapter spinner
                     val listFasilitas = mutableListOf<DataFasilitasRumahSakitItem>()
                     for(i in 0 until fasilitasResponse?.size!!){
-                        Log.d("BPJS fragment fasilitas","nama fasilitas : ${fasilitasResponse[i].fasilitaNamaLayanan}, id fasilitas: ${fasilitasResponse[i].id}")
+                        Log.d("BPJS fragment fasilitas","nama fasilitas : ${fasilitasResponse[i].fasilitasNamaLayanan}, id fasilitas: ${fasilitasResponse[i].id}")
                         listFasilitas.add(fasilitasResponse[i])
                     }
 
                     //setup for spinner
                     binding.edtFasilitaas.apply {
                         val namaFasilitas = listFasilitas.map {
-                            it.fasilitaNamaLayanan
+                            it.fasilitasNamaLayanan
                         }
                         val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, namaFasilitas)
                         setAdapter(adapter)
                         hint = "Pilih Fasilitas"
                         onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, _ ->
-                                if (listFasilitas[position].fasilitaNamaLayanan == namaFasilitas[position]){
+                                if (listFasilitas[position].fasilitasNamaLayanan == namaFasilitas[position]){
                                     idFasilitas = listFasilitas[position].id.toString()
                                     Utils.makeToast(requireContext(),idFasilitas)
                                 }
@@ -150,13 +150,18 @@ class PendaftaranBpjsFragment : Fragment() {
                    if (noBpjsPasien != null) {
                        if (noBpjsPasien.isNotEmpty()){
                            binding.tvNoBpjs.text = noBpjsPasien
+                           binding.btnSimpanData.isEnabled = true
                        } else {
                            binding.tvNoBpjs.letterSpacing = 0.0F
                            binding.tvNoBpjs.text = "Masukan dahulu nomer BPJS anda"
+                           binding.btnSimpanData.isEnabled = false
+
+
                        }
                    } else {
                        binding.tvNoBpjs.letterSpacing = 0.0F
                        binding.tvNoBpjs.text = "Masukan dahulu nomer BPJS anda"
+                       binding.btnSimpanData.isEnabled = false
                    }
                }
                Status.LOADING ->{
