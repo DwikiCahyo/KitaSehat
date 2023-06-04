@@ -50,9 +50,9 @@ class ProfileActivity : AppCompatActivity() {
             editor.clear()
             editor.apply()
             val intent = Intent(this,LoginActivity::class.java)
-            Toast.makeText(this,"Berhasil Keluar",Toast.LENGTH_SHORT).show()
             startActivity(intent)
             finish()
+
         }
     }
 }
