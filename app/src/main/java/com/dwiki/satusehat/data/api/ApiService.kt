@@ -95,6 +95,27 @@ interface ApiService {
         @Field("rumah_sakit_id") rumah_sakit_id:Int
     ):Response<DetailRumahSakitResponse>
 
+    @GET("antreanlive")
+    suspend fun getAntreanLive(
+        @Header("Authorization") token: String,
+    ):Response<AntreanLiveResponse>
+
+
+    @FormUrlEncoded
+    @PUT("pasien")
+    suspend fun editProfile(
+        @Header("Authorization") token: String,
+        @Field("nama") nama:String,
+        @Field("jenis_kelamin") jenis_kelamin: String,
+        @Field("tanggal_lahir") tanggal_lahir:String,
+        @Field("agama") agama:String,
+        @Field("pekerjaan") pekerjaan:String,
+        @Field("pendidikan") pendidikan:String,
+        @Field("status_perkawinan") status_perkawinan:String,
+        @Field("no_bpjs") no_bpjs:String,
+        @Field("no_hp") no_hp:String,
+    ):Response<ProfileItemResponse>
+
 
 
 

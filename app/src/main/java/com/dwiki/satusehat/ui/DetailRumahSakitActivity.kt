@@ -71,8 +71,8 @@ class DetailRumahSakitActivity : AppCompatActivity(), OnMapReadyCallback {
 
         rsAdapter = RumahSakitMapAdapter(ArrayList())
 
-//        val mapFragment = supportFragmentManager.findFragmentById(R.id.layout_maps) as SupportMapFragment
-//        mapFragment.getMapAsync(this)
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.layout_maps) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
     private fun initRecycleView() {
@@ -115,26 +115,26 @@ class DetailRumahSakitActivity : AppCompatActivity(), OnMapReadyCallback {
                         rsAdapter.getItem(listRs)
                         initRecycleView()
 
-//                        for (i in listRs.indices) {
-//                            val lon = listRs[i].koordinat.coordinates[0] as Double
-//                            val lat = listRs[i].koordinat.coordinates[1] as Double
-//
-//                            val latLon = LatLng(lon, lat)
-//                            Log.d("Detail Rs", "$latLon")
-//
-//                            gMap.addMarker(
-//                                MarkerOptions()
-//                                    .position(latLon)
-//                                    .title(listRs[i].nama)
-//                                    .snippet("${listRs[i].daerah.jenis}, ${listRs[i].daerah.namaDaerah}")
-//                                    .icon(vectorToBitmap(R.drawable.baseline_local_hospital_24, Color.RED))
-//                            )
-//
-//                            boundsBuilder.include(latLon)
-//                            val bounds: LatLngBounds = boundsBuilder.build()
-//                            gMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 64))
-//
-//                        }
+                        for (i in listRs.indices) {
+                            val lon = listRs[i].koordinat.coordinates[0] as Double
+                            val lat = listRs[i].koordinat.coordinates[1] as Double
+
+                            val latLon = LatLng(lon, lat)
+                            Log.d("Detail Rs", "$latLon")
+
+                            gMap.addMarker(
+                                MarkerOptions()
+                                    .position(latLon)
+                                    .title(listRs[i].nama)
+                                    .snippet("${listRs[i].daerah.jenis}, ${listRs[i].daerah.namaDaerah}")
+                                    .icon(vectorToBitmap(R.drawable.baseline_local_hospital_24, Color.RED))
+                            )
+
+                            boundsBuilder.include(latLon)
+                            val bounds: LatLngBounds = boundsBuilder.build()
+                            gMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 64))
+
+                        }
 
                         //button onclick
                         rsAdapter.setOnItemClickCallback(object :RumahSakitMapAdapter.OnItemClickCallback{

@@ -226,6 +226,53 @@ class MainRepository @Inject constructor(private val apiHelper: ApiHelper, priva
         }
     }
 
+    fun getAntreanLive(token: String):Flow<Resources<AntreanLiveResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.getAntreanLive(token)
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes Antrean Live: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error Antrean Live: ${response.errorBody()?.string()}")
+            }
+        }catch(e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error Status Antrean Live : ${e.cause.toString()}")
+        }
+    }
+
+    fun editProfilePasien(
+        token: String,
+        nama:String,
+        jenisKelamin:String,
+        ttl:String,
+        agama:String,
+        pekerjaan: String,
+        pendidikan: String,
+        statusPerkawinan: String,
+        noBpjs: String,
+        noHP: String,
+    ):Flow<Resources<ProfileItemResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.editProfile("Bearer $token",nama,jenisKelamin,ttl,agama,pekerjaan,pendidikan,statusPerkawinan,noBpjs,noHP)
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes Edit Profile: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error Edit Profile: ${response.errorBody()?.string()}")
+            }
+        }catch(e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error Status Edit Profile : ${e.cause.toString()}")
+        }
+    }
+
+
+
 
     companion object {
         private const val TAG = "Repository"

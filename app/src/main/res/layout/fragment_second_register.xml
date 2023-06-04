@@ -160,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/opensans_medium"
-                        android:text="Nomor BPJS"
+                        android:text="Nomor BPJS (kosongkan jika tidak memiliki)"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 

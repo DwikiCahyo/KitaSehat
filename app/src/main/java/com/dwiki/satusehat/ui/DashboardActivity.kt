@@ -68,14 +68,19 @@ class DashboardActivity : AppCompatActivity()  {
         prefManager.getToken()
 
 
+//        binding.ivProfilePasien.setOnClickListener {
+//            val editor = pref.edit()
+//            editor.clear()
+//            editor.apply()
+//            val intent = Intent(this,LoginActivity::class.java)
+//            Toast.makeText(this,"CLickkeerrr",Toast.LENGTH_SHORT).show()
+//            startActivity(intent)
+//            finish()
+//        }
+
         binding.ivProfilePasien.setOnClickListener {
-            val editor = pref.edit()
-            editor.clear()
-            editor.apply()
-            val intent = Intent(this,LoginActivity::class.java)
-            Toast.makeText(this,"CLickkeerrr",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,ProfileActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
        //set click for card number 2 in dashboard
@@ -86,6 +91,11 @@ class DashboardActivity : AppCompatActivity()  {
 
         binding.cvLayanan3.setOnClickListener {
             val intent = Intent(this,RiwayatPendaftaranActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.cvLayanan4.setOnClickListener {
+            val intent  = Intent(this,AntreanLiveActivity::class.java)
             startActivity(intent)
         }
 

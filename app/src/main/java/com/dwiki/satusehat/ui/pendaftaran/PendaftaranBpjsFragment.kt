@@ -1,7 +1,6 @@
 package com.dwiki.satusehat.ui.pendaftaran
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
@@ -11,15 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.dwiki.satusehat.R
 import com.dwiki.satusehat.data.responseModel.DataFasilitasRumahSakitItem
 import com.dwiki.satusehat.databinding.FragmentPendaftaranBpjsBinding
 import com.dwiki.satusehat.model.RumahSakit
-import com.dwiki.satusehat.ui.DashboardActivity
-import com.dwiki.satusehat.ui.SuccessDialog
+import com.dwiki.satusehat.ui.dialog.SuccessDialog
 import com.dwiki.satusehat.util.Status
 import com.dwiki.satusehat.util.Utils
 import com.dwiki.satusehat.viewModel.FasilitasRumahSakitViewModel

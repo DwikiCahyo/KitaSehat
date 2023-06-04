@@ -1,7 +1,6 @@
 package com.dwiki.satusehat.ui.pendaftaran
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
@@ -17,12 +16,10 @@ import com.dwiki.satusehat.R
 import com.dwiki.satusehat.data.responseModel.DataFasilitasRumahSakitItem
 import com.dwiki.satusehat.databinding.FragmentPendaftaranUmumBinding
 import com.dwiki.satusehat.model.RumahSakit
-import com.dwiki.satusehat.ui.DashboardActivity
-import com.dwiki.satusehat.ui.SuccessDialog
+import com.dwiki.satusehat.ui.dialog.SuccessDialog
 import com.dwiki.satusehat.util.Status
 import com.dwiki.satusehat.util.Utils
 import com.dwiki.satusehat.viewModel.FasilitasRumahSakitViewModel
-import com.dwiki.satusehat.viewModel.PasienProfileViewModel
 import com.dwiki.satusehat.viewModel.RegistrasiViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -106,7 +106,7 @@ class DetailRiwayatActivity : AppCompatActivity() {
                 }
                 Status.ERROR ->{
                     if (token != null){
-                        Log.e(TAG, "Error : $token jancokkkkk ")
+                        Log.e(TAG, "Error : $token ")
                     } else {
                         Log.e(TAG, "Error : Tidak ada token")
                     }

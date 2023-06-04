@@ -1,12 +1,12 @@
-package com.dwiki.satusehat.ui
+package com.dwiki.satusehat.ui.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.fragment.app.DialogFragment
 import com.dwiki.satusehat.databinding.DialogSuccesBinding
+import com.dwiki.satusehat.ui.DashboardActivity
 
 class SuccessDialog(
     val mssg:String
@@ -24,7 +24,7 @@ class SuccessDialog(
         binding.tvTextDialog.text = mssg
 
         binding.btnLanjut.setOnClickListener {
-            val intent = Intent(context,DashboardActivity::class.java)
+            val intent = Intent(context, DashboardActivity::class.java)
             startActivity(intent)
             dismiss()
         }
