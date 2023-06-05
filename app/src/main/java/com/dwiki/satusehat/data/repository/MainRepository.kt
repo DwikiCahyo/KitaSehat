@@ -10,6 +10,7 @@ import com.dwiki.satusehat.util.Resources
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(private val apiHelper: ApiHelper, private val apiService: ApiService) {
@@ -258,6 +259,23 @@ class MainRepository @Inject constructor(private val apiHelper: ApiHelper, priva
         emit(Resources.loading(null))
         try {
             val response = apiService.editProfile("Bearer $token",nama,jenisKelamin,ttl,agama,pekerjaan,pendidikan,statusPerkawinan,noBpjs,noHP)
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes Edit Profile: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error Edit Profile: ${response.errorBody()?.string()}")
+            }
+        }catch(e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error Status Edit Profile : ${e.cause.toString()}")
+        }
+    }
+
+    fun editFotoProfil(token: String,image:MultipartBody.Part):Flow<Resources<EditFotoProfileResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.uploadImage("Bearer $token",image)
             if (response.isSuccessful){
                 emit(Resources.success(response.body()))
                 Log.d(TAG,"succes Edit Profile: ${response.message()}")

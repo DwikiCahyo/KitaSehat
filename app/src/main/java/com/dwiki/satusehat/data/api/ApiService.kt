@@ -1,8 +1,7 @@
 package com.dwiki.satusehat.data.api
 
 import com.dwiki.satusehat.data.responseModel.*
-import com.dwiki.satusehat.model.PasienLogin
-import com.dwiki.satusehat.model.PasienSignUp
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -115,6 +114,15 @@ interface ApiService {
         @Field("no_bpjs") no_bpjs:String,
         @Field("no_hp") no_hp:String,
     ):Response<ProfileItemResponse>
+
+
+    @Multipart
+    @POST("fotopasien")
+    suspend fun uploadImage(
+        @Header("Authorization") token: String,
+        @Part file: MultipartBody.Part
+    ):Response<EditFotoProfileResponse>
+
 
 
 

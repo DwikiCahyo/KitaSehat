@@ -1,6 +1,7 @@
 package com.dwiki.satusehat.ui
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.ColorDrawable
 import android.nfc.Tag
@@ -65,6 +66,12 @@ class EditProfileActivity : AppCompatActivity() {
         //save new data
         editData(token)
 
+        //edit foto profile
+        binding.btnEditFoto.setOnClickListener {
+            val intent = Intent(this,EditFotoProfilActivity::class.java)
+            startActivity(intent)
+        }
+
 
         //get data pasien
         pasienProfileViewModel.getProfile(token).observe(this){
@@ -86,7 +93,7 @@ class EditProfileActivity : AppCompatActivity() {
                     if (it.data.dataPasien.fotoProfil != null){
                         Glide.with(this).load(it.data?.dataPasien?.fotoProfil).into(binding.ivFotoProfil)
                     } else {
-                        Glide.with(this).load(R.drawable.ic_no_image).into(binding.ivFotoProfil)
+                        Glide.with(this).load(R.drawable.ic_default_profile).into(binding.ivFotoProfil)
                     }
 
                 } else -> {
