@@ -289,6 +289,39 @@ class MainRepository @Inject constructor(private val apiHelper: ApiHelper, priva
         }
     }
 
+    fun getKontakDarurat(token: String):Flow<Resources<KontakDaruratResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.getKontakDarurat("Bearer $token")
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes get Kontak Darurat: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error get Kontak Darurat: ${response.errorBody()?.string()}")
+            }
+        }catch(e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error get Kontak Darurat : ${e.cause.toString()}")
+        }
+    }
+
+    fun postKontakDarurat(token: String,nama:String,noTelepon:String):Flow<Resources<EditFotoProfileResponse>> = flow {
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.postKontakDarurat("Bearer $token",nama,noTelepon)
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes post Kontak Darurat: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error post Kontak Darurat: ${response.errorBody()?.string()}")
+            }
+        }catch(e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error post Kontak Darurat : ${e.cause.toString()}")
+        }
+    }
 
 
 

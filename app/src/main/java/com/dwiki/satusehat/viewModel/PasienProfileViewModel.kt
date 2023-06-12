@@ -4,10 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.dwiki.satusehat.PreferenceManager
 import com.dwiki.satusehat.data.repository.MainRepository
-import com.dwiki.satusehat.data.responseModel.EditFotoProfileResponse
-import com.dwiki.satusehat.data.responseModel.PasienProfileResponse
-import com.dwiki.satusehat.data.responseModel.ProfileItemResponse
-import com.dwiki.satusehat.data.responseModel.RegistrasiAntreanResponse
+import com.dwiki.satusehat.data.responseModel.*
 import com.dwiki.satusehat.util.Resources
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -24,9 +21,17 @@ class PasienProfileViewModel @Inject constructor(private val mainRepository: Mai
     private val _responseEditProfile = MutableLiveData<Resources<ProfileItemResponse>>()
     val responseEditProfile:LiveData<Resources<ProfileItemResponse>> = _responseEditProfile
 
-
     private val _responseEditFotoProfile = MutableLiveData<Resources<EditFotoProfileResponse>>()
     val responseEditFotoProfile:LiveData<Resources<EditFotoProfileResponse>> = _responseEditFotoProfile
+
+    private val _responseKontakDarurat = MutableLiveData<Resources<KontakDaruratResponse>>()
+    val responseKontakDarurat:LiveData<Resources<KontakDaruratResponse>> = _responseKontakDarurat
+
+    private val _responseItemKontakDarurat = MutableLiveData<Resources<EditFotoProfileResponse>>()
+    val responseItemKontakDarurat:LiveData<Resources<EditFotoProfileResponse>> = _responseItemKontakDarurat
+
+
+
     fun editProfile(
         token: String,
         nama:String,
@@ -61,6 +66,29 @@ class PasienProfileViewModel @Inject constructor(private val mainRepository: Mai
         }
     }
 
+    fun postKontakDarurat(
+        token: String,
+        name:String,
+        noTelepon:String
+    ){
+        viewModelScope.launch {
+            mainRepository.postKontakDarurat(token, name, noTelepon)
+                .flowOn(Dispatchers.IO)
+                .collect {
+                    _responseItemKontakDarurat.postValue(it)
+                }
+        }
+    }
+
+    fun getKontakDarurat(token: String) {
+        viewModelScope.launch {
+            mainRepository.getKontakDarurat(token)
+                .flowOn(Dispatchers.IO)
+                .collect {
+                    _responseKontakDarurat.postValue(it)
+                }
+        }
+    }
 
     companion object{
         const val TAG ="Pasien Profile ViewModel"

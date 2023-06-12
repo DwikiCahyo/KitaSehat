@@ -123,6 +123,19 @@ interface ApiService {
         @Part file: MultipartBody.Part
     ):Response<EditFotoProfileResponse>
 
+    @GET("kontakdarurat")
+    suspend fun getKontakDarurat(
+        @Header("Authorization") token: String,
+    ):Response<KontakDaruratResponse>
+
+    @FormUrlEncoded
+    @POST("kontakdarurat")
+    suspend fun postKontakDarurat(
+        @Header("Authorization") token: String,
+        @Field("nama") nama:String,
+        @Field("no_hp") no_hp:String
+    ):Response<EditFotoProfileResponse>
+
 
 
 

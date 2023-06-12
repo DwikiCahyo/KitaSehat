@@ -1,6 +1,7 @@
 package com.dwiki.satusehat.ui
 
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

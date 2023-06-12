@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.AlarmClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +49,13 @@ class AntreanLiveActivity : AppCompatActivity() {
         }
 
 
+        binding.btnBatalkan.setOnClickListener {
+            val intent = Intent(AlarmClock.ACTION_SET_ALARM)
+            intent.putExtra(AlarmClock.EXTRA_MESSAGE,"Silahkan Menuju Layanan Anda")
+            intent.putExtra(AlarmClock.EXTRA_HOUR, 0)
+            intent.putExtra(AlarmClock.EXTRA_MINUTES, 1)
+            startActivity(intent)
+        }
 
 
     }
@@ -63,6 +71,7 @@ class AntreanLiveActivity : AppCompatActivity() {
                 Status.SUCCESS ->{
                     binding.layoutNoLoginCart.visibility = View.GONE
                     binding.layoutDetail.visibility = View.VISIBLE
+
                     val jenisPasien = it.data?.data?.jenisPasien
                     if (jenisPasien == "UMUM"){
                         binding.ivIconLayanan.setImageResource(R.drawable.ic_umum)
@@ -71,14 +80,17 @@ class AntreanLiveActivity : AppCompatActivity() {
                         binding.ivIconLayanan.setImageResource(R.drawable.ic_bpjs)
                         binding.tvJenisLayanan.text = "BPJS"
                     }
+                    binding.tvTanggalPendaftraan.text = "Tanggal Pendaftaran : " + it.data?.data?.tanggalPendaftaran
+                    binding.tvWaktuPendaftaraan.text = "Waktu Pendaftaraan : " + it.data?.data?.waktuPendaftaran
                     binding.antreanSaatIni.text = it.data?.data?.noAntreanSaatIni.toString()
                     binding.antreanAnda.text = it.data?.data?.nomorAntrean.toString()
                     binding.tvFasilitas.text = it.data?.data?.fasilitas
                     binding.tvRumahSakit.text = it.data?.data?.rumahSakit
                 }
                 Status.ERROR ->{
+
                     binding.layoutNoLoginCart.visibility = View.GONE
-                    binding.layoutDetail.visibility = View.VISIBLE
+                    binding.layoutDetail.visibility = View.GONE
                     if (token != null){
                         Log.e(DetailRiwayatActivity.TAG, "Error : $token jancokkkkk ")
                     } else {

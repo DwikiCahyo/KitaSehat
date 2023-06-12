@@ -29,5 +29,14 @@ data class DataAntreanLive(
 	val antreanId: Int,
 
 	@field:SerializedName("rumah_sakit")
-	val rumahSakit: String
+	val rumahSakit: String,
+
+	@field:SerializedName("tanggal_pendaftaran")
+	val tanggalPendaftaran: String,
+
+	@field:SerializedName("waktu_pendaftaran")
+	val waktuPendaftaran: String,
+
+	@field:SerializedName("perkiraan_waktu_tunggu")
+	val perkiraanWaktuTunggu: String,
 )

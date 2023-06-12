@@ -32,6 +32,28 @@
                 android:padding="10dp" />
         </com.google.android.material.card.MaterialCardView>
 
+        <TextView
+            android:id="@+id/tv_tanggal_pendaftraan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tanggal Pendaftaran : 24 Maret 2001"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/tv_waktu_pendaftaraan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Waktu Pendaftaran : 24 Maret 2001"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/black"
+            />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_ticket_view"
@@ -160,14 +182,14 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     tools:src = "@drawable/ic_bpjs" />
 
                 <LinearLayout
                     android:id="@+id/layout_header_layanan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_icon_layanan"
                     android:layout_marginTop="5dp"
                     android:orientation="vertical">
@@ -245,6 +267,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <com.dwiki.satusehat.customView.CustomButton
+            android:id="@+id/btn_batalkan"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Batalkan Antrean"
+            android:backgroundTint="@color/red_error"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            />
+
 
     </LinearLayout>
 
@@ -257,7 +290,7 @@
         android:orientation="vertical"
         android:gravity="center"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/anim_antrean"

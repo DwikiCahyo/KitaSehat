@@ -35,6 +35,14 @@ class ProfileActivity : AppCompatActivity() {
 
         logout()
         editProfile()
+        kontakDarurat()
+    }
+
+    private fun kontakDarurat() {
+        binding.layoutKontakDarurat.setOnClickListener {
+            val intent = Intent(this,KontakDaruratActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun editProfile() {

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="23dp"
+    tools:context=".ui.TambahKontakDaruratActivity">
+
+    <TextView
+        android:id="@+id/tv_nama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/opensans_medium"
+        android:text="Nama Kontak "
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <com.dwiki.satusehat.customView.CustomEditText
+        android:id="@+id/edt_nama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/custom_edt_margin_top"
+        android:fontFamily="@font/opensans_medium"
+        android:hint="Nama"
+        android:minHeight="48dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp" />
+
+    <TextView
+        android:id="@+id/tv_nomer_telp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/opensans_medium"
+        android:text="Nomor Hp"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:id="@+id/layout_no_telepom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_marginTop="@dimen/custom_edt_margin_top"
+            app:cardCornerRadius="5dp"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="+62 "
+                android:fontFamily="@font/opensans_bold"
+                android:textColor="@color/primary"
+                android:textSize="24sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.dwiki.satusehat.customView.CustomEditText
+            android:id="@+id/edt_no_telepon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/custom_edt_margin_top"
+            android:layout_marginLeft="5dp"
+            android:fontFamily="@font/opensans_medium"
+            android:hint="No Telepon"
+            android:inputType="phone"
+            android:maxLength="13"
+            android:minHeight="48dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp" />
+
+    </LinearLayout>
+
+    <com.dwiki.satusehat.customView.CustomButton
+        android:id="@+id/btn_simpan_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Simpan Data"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/daftar_akun_sosial"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+</LinearLayout>
