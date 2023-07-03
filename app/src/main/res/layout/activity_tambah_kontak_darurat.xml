@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="23dp"
-    tools:context=".ui.TambahKontakDaruratActivity">
+    tools:context=".view.TambahKontakDaruratActivity">
 
     <TextView
         android:id="@+id/tv_nama"

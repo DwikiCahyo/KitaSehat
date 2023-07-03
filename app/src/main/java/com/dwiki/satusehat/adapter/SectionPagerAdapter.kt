@@ -3,8 +3,8 @@ package com.dwiki.satusehat.adapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.dwiki.satusehat.ui.pendaftaran.PendaftaranBpjsFragment
-import com.dwiki.satusehat.ui.pendaftaran.PendaftaranUmumFragment
+import com.dwiki.satusehat.view.pendaftaran.PendaftaranBpjsFragment
+import com.dwiki.satusehat.view.pendaftaran.PendaftaranUmumFragment
 
 class SectionPagerAdapter(activity:AppCompatActivity):FragmentStateAdapter(activity) {
     override fun getItemCount(): Int {

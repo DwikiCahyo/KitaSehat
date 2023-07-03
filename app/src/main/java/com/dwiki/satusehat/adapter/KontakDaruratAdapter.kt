@@ -3,8 +3,8 @@ package com.dwiki.satusehat.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dwiki.satusehat.data.responseModel.KontakDaruratResponse
-import com.dwiki.satusehat.data.responseModel.ListKontakDaruratItem
+import com.dwiki.satusehat.model.responseModel.KontakDaruratResponse
+import com.dwiki.satusehat.model.responseModel.ListKontakDaruratItem
 import com.dwiki.satusehat.databinding.ItemKontakDaruratBinding
 
 class KontakDaruratAdapter(
@@ -13,7 +13,7 @@ class KontakDaruratAdapter(
     ):RecyclerView.Adapter<KontakDaruratAdapter.ViewHolder>() {
 
     class ViewHolder(private val binding:ItemKontakDaruratBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(kontak:ListKontakDaruratItem,onSelect: (ListKontakDaruratItem) -> Unit){
+        fun bind(kontak: ListKontakDaruratItem, onSelect: (ListKontakDaruratItem) -> Unit){
             binding.apply {
                 tvNamaKontak.text = kontak.nama
                 tvNoTelepon.text = kontak.noHp

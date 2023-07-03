@@ -8,12 +8,10 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.dwiki.satusehat.BuildConfig
 import com.dwiki.satusehat.PreferenceManager
-import com.dwiki.satusehat.adapter.RumahSakitAdapter
 import com.dwiki.satusehat.data.api.ApiHelper
 import com.dwiki.satusehat.data.api.ApiHelperImpl
 import com.dwiki.satusehat.data.api.ApiService
-import com.dwiki.satusehat.data.responseModel.ListRumahSakitItem
-import com.dwiki.satusehat.ui.LoadingDialog
+import com.dwiki.satusehat.view.LoadingDialog
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +21,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 

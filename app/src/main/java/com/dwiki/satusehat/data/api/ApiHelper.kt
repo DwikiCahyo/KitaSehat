@@ -1,6 +1,7 @@
 package com.dwiki.satusehat.data.api
 
-import com.dwiki.satusehat.data.responseModel.*
+import com.dwiki.satusehat.model.responseModel.PasienProfileResponse
+import com.dwiki.satusehat.model.responseModel.PasienRegisterResponse
 import retrofit2.Response
 
 interface ApiHelper {

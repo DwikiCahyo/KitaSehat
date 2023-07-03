@@ -21,22 +21,22 @@
         android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"
         tools:targetApi="31">
         <activity
-            android:name=".ui.TambahKontakDaruratActivity"
+            android:name=".view.TambahKontakDaruratActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.KontakDaruratActivity"
+            android:name=".view.KontakDaruratActivity"
             android:exported="false"
             android:theme="@style/Theme.SatuSehatActionBar" />
         <activity
-            android:name=".ui.EditFotoProfilActivity"
+            android:name=".view.EditFotoProfilActivity"
             android:exported="false"
             android:theme="@style/Theme.SatuSehatActionBar" />
         <activity
-            android:name=".ui.EditProfileActivity"
+            android:name=".view.EditProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.SatuSehatActionBar" />
         <activity
-            android:name=".ui.ProfileActivity"
+            android:name=".view.ProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.SatuSehatActionBar" />
 
@@ -45,7 +45,7 @@
             android:value="AIzaSyB4x9zj21G1QI4E-SZGU4K8Ge-ZEX9VUCQ" />
 
         <activity
-            android:name=".ui.AntreanLiveActivity"
+            android:name=".view.AntreanLiveActivity"
             android:exported="false"
             android:theme="@style/Theme.SatuSehatActionBar" />
 
@@ -54,30 +54,30 @@
             android:required="false" />
 
         <activity
-            android:name=".ui.DetailRsActivity"
+            android:name=".view.DetailRsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.DetailRiwayatActivity"
+            android:name=".view.DetailRiwayatActivity"
             android:exported="false"
             android:theme="@style/Theme.SatuSehatActionBar" />
         <activity
-            android:name=".ui.RiwayatPendaftaranActivity"
+            android:name=".view.RiwayatPendaftaranActivity"
             android:exported="false"
             android:theme="@style/Theme.SatuSehatActionBar" />
         <activity
-            android:name=".ui.DetailRumahSakitActivity"
+            android:name=".view.DetailRumahSakitActivity"
             android:exported="false"
             android:theme="@style/Theme.SatuSehatActionBar" />
         <activity
-            android:name=".ui.pendaftaran.PendaftaranAntreanActivity"
+            android:name=".view.pendaftaran.PendaftaranAntreanActivity"
             android:exported="false"
             android:theme="@style/Theme.SatuSehatActionBar" />
         <activity
-            android:name=".ui.PendaftaranRumahSakitActivity"
+            android:name=".view.PendaftaranRumahSakitActivity"
             android:exported="false"
             android:theme="@style/Theme.SatuSehatActionBar" />
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".view.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -90,7 +90,7 @@
                 android:value=" " />
         </activity>
         <activity
-            android:name=".ui.RegisterActivity"
+            android:name=".view.RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
@@ -98,7 +98,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".view.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
@@ -106,7 +106,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.DashboardActivity"
+            android:name=".view.DashboardActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

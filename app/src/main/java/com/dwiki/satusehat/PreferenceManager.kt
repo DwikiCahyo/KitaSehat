@@ -29,6 +29,19 @@ class PreferenceManager @Inject constructor(private val dataStore: DataStore<Pre
         }
     }
 
+    fun getIdRumahSakit():Flow<String>{
+        return dataStore.data.map {
+            it[ID_RS] ?: ""
+        }
+    }
+    //save id rumah sakit
+    suspend fun saveIdRumahSakit(id:String){
+        dataStore.edit {
+            it[ID_RS] = id
+        }
+    }
+
+
     //get login state
     fun getLoginState():Flow<Boolean>{
         return dataStore.data.map {
@@ -44,6 +57,9 @@ class PreferenceManager @Inject constructor(private val dataStore: DataStore<Pre
         }
     }
 
+
+
+
     //logout
     suspend fun logout(){
         dataStore.edit {
@@ -53,6 +69,7 @@ class PreferenceManager @Inject constructor(private val dataStore: DataStore<Pre
 
 
    companion object{
+       private val ID_RS = stringPreferencesKey("id")
        private val LOGIN_STATE = booleanPreferencesKey("login_state")
        private val TOKEN = stringPreferencesKey("token")
    }

@@ -8,8 +8,8 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dwiki.satusehat.R
-import com.dwiki.satusehat.data.responseModel.DataRiwayatAntreanBpjsItem
-import com.dwiki.satusehat.data.responseModel.DataRiwayatAntreanUmumItem
+import com.dwiki.satusehat.model.responseModel.DataRiwayatAntreanBpjsItem
+import com.dwiki.satusehat.model.responseModel.DataRiwayatAntreanUmumItem
 import com.dwiki.satusehat.util.VectorDrawableUtils
 import com.github.vipulasri.timelineview.TimelineView
 

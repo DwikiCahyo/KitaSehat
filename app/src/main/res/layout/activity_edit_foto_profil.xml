@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="23dp"
-    tools:context=".ui.EditFotoProfilActivity">
+    tools:context=".view.EditFotoProfilActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_foto_profil"

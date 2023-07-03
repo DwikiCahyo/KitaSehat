@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.dwiki.satusehat.data.api.ApiHelper
 import com.dwiki.satusehat.data.api.ApiService
-import com.dwiki.satusehat.data.responseModel.*
+import com.dwiki.satusehat.model.responseModel.*
 import com.dwiki.satusehat.util.Resources
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -323,7 +323,22 @@ class MainRepository @Inject constructor(private val apiHelper: ApiHelper, priva
         }
     }
 
-
+    fun postBatalkanAntrean(token: String,antreanId:Int,jenisAntrean: String):Flow<Resources<BatalkanAntreanResponse>> = flow{
+        emit(Resources.loading(null))
+        try {
+            val response = apiService.cancelAntrean("Bearer $token",jenisAntrean,antreanId)
+            if (response.isSuccessful){
+                emit(Resources.success(response.body()))
+                Log.d(TAG,"succes post Batalkan Antrean: ${response.message()}")
+            } else {
+                emit(Resources.error(response.errorBody()?.string(),null))
+                Log.e(TAG,"error post Batalkan Antrean: ${response.errorBody()?.string()}")
+            }
+        } catch (e:Exception){
+            emit(Resources.error(e.message.toString(),null))
+            Log.e(TAG,"error post Batalkan Antrean : ${e.cause.toString()}")
+        }
+    }
 
     companion object {
         private const val TAG = "Repository"

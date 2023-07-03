@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/firstRegisterFragment"
-        android:name="com.dwiki.satusehat.loginRegisterFragmentUI.FirstRegisterFragment"
+        android:name="com.dwiki.satusehat.view.loginRegisterFragmentUI.FirstRegisterFragment"
         android:label="fragment_first_register"
         tools:layout="@layout/fragment_first_register" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/secondRegisterFragment"
-        android:name="com.dwiki.satusehat.loginRegisterFragmentUI.SecondRegisterFragment"
+        android:name="com.dwiki.satusehat.view.loginRegisterFragmentUI.SecondRegisterFragment"
         android:label="fragment_second_register"
         tools:layout="@layout/fragment_second_register" />
 </navigation>

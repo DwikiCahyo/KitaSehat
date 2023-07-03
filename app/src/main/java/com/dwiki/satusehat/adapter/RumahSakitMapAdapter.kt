@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dwiki.satusehat.data.responseModel.ListRumahSakitItem
+import com.dwiki.satusehat.model.responseModel.ListRumahSakitItem
 import com.dwiki.satusehat.databinding.ItemRumahSakitMapBinding
 import java.util.Collections.addAll
 
@@ -26,7 +26,7 @@ class RumahSakitMapAdapter(private var listRumahSakit:List<ListRumahSakitItem>):
     }
 
     inner class ViewHolder(val binding:ItemRumahSakitMapBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(listRumahSakit:ListRumahSakitItem){
+        fun bind(listRumahSakit: ListRumahSakitItem){
 
             binding.apply {
                 tvNamaRs.text = listRumahSakit.nama

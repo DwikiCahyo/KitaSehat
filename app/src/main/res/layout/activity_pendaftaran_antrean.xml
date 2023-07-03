@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroud_pendaftaran"
-    tools:context=".ui.pendaftaran.PendaftaranAntreanActivity">
+    tools:context=".view.pendaftaran.PendaftaranAntreanActivity">
 
     <TextView
         android:id="@+id/tv_rs_title"

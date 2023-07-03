@@ -1,8 +1,9 @@
 package com.dwiki.satusehat.data.api
 
-import com.dwiki.satusehat.data.responseModel.*
 import com.dwiki.satusehat.model.PasienLogin
 import com.dwiki.satusehat.model.PasienSignUp
+import com.dwiki.satusehat.model.responseModel.PasienProfileResponse
+import com.dwiki.satusehat.model.responseModel.PasienRegisterResponse
 import retrofit2.Response
 import javax.inject.Inject
 

@@ -1,19 +1,15 @@
 package com.dwiki.satusehat.adapter
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dwiki.satusehat.R
-import com.dwiki.satusehat.data.responseModel.ListRumahSakitItem
+import com.dwiki.satusehat.model.responseModel.ListRumahSakitItem
 import com.dwiki.satusehat.databinding.ItemRumahSakitBinding
 import com.dwiki.satusehat.model.RumahSakit
-import com.dwiki.satusehat.ui.pendaftaran.PendaftaranAntreanActivity
+import com.dwiki.satusehat.view.pendaftaran.PendaftaranAntreanActivity
 
 
 class RumahSakitAdapter(private var listRs:List<ListRumahSakitItem>):RecyclerView.Adapter<RumahSakitAdapter.ViewHolder>() {

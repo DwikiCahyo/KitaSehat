@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:padding="15dp"
-    tools:context=".ui.pendaftaran.PendaftaranBpjsFragment">
+    tools:context=".view.pendaftaran.PendaftaranBpjsFragment">
 
     <TextView
         android:id="@+id/tv_keluhan"
@@ -93,13 +93,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pilih Fasilitas"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textSize="16sp"
         android:layout_marginHorizontal="3dp"
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/cv_rs"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_informasi"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_info"
+        app:layout_constraintTop_toBottomOf="@+id/cv_rs"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/form_fasilitas"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/backgroud_pendaftaran"
     android:padding="15dp"
-    tools:context=".ui.PendaftaranRumahSakitActivity">
+    tools:context=".view.PendaftaranRumahSakitActivity">
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_frame_layout"

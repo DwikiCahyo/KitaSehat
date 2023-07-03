@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.dwiki.satusehat.R
-import com.dwiki.satusehat.data.responseModel.DataRiwayatAntreanUmumItem
+import com.dwiki.satusehat.model.responseModel.DataRiwayatAntreanUmumItem
 import com.dwiki.satusehat.util.VectorDrawableUtils
 import com.github.vipulasri.timelineview.TimelineView
 
@@ -73,6 +73,6 @@ class RiwayatUmumAdapter(private val listUmum:List<DataRiwayatAntreanUmumItem>):
     }
 
     interface OnItemClickCallback{
-        fun onItemClicked(listRiwayatUmum:DataRiwayatAntreanUmumItem)
+        fun onItemClicked(listRiwayatUmum: DataRiwayatAntreanUmumItem)
     }
 }
