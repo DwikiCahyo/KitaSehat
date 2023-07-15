@@ -3,6 +3,7 @@ package com.dwiki.satusehat.data.api
 
 import com.dwiki.satusehat.model.responseModel.*
 import okhttp3.MultipartBody
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -48,7 +49,6 @@ interface ApiService {
     @GET("rumahsakit")
     suspend fun getRumahSakit(
         @Header("Authorization") token:String,
-
     ):Response<RumahSakitResponse>
 
     @GET("fasilitasrumahsakit")
@@ -144,6 +144,9 @@ interface ApiService {
         @Field("jenis_pasien") jenis_pasien:String,
         @Field("antrean_id") antrean_id:Int
     ):Response<BatalkanAntreanResponse>
+
+    @GET("imageslider")
+    fun getImageSlider(): Call<ResponseImageSlider>
 
 
 

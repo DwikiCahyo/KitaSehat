@@ -340,6 +340,13 @@ class MainRepository @Inject constructor(private val apiHelper: ApiHelper, priva
         }
     }
 
+
+
+    fun getImageSlider(){
+        apiService
+    }
+
+
     companion object {
         private const val TAG = "Repository"
     }

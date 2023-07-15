@@ -17,7 +17,6 @@ import com.dwiki.satusehat.R
 class CustomEditPassword:AppCompatEditText, View.OnTouchListener {
     private lateinit var hiddenPassword:Drawable
 
-
     constructor(context: Context) : super(context) {
        init()
     }

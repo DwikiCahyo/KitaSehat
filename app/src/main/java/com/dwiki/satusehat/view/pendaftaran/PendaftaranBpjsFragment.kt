@@ -23,6 +23,7 @@ import com.dwiki.satusehat.util.Utils
 import com.dwiki.satusehat.viewmodel.FasilitasRumahSakitViewModel
 import com.dwiki.satusehat.viewmodel.PasienProfileViewModel
 import com.dwiki.satusehat.viewmodel.RegistrasiViewModel
+import com.shashank.sony.fancytoastlib.FancyToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -75,10 +76,14 @@ class PendaftaranBpjsFragment : Fragment() {
 
         getProfilePasien(token)
         getFasilitas(token,rumahSakitId?.id.toString())
+
         binding.btnSimpanData.setOnClickListener {
             val keluhan = binding.edtKeluhan.text.toString()
-            postAntrean("antreanbpjs",token,idFasilitas,keluhan)
-
+            if (keluhan.isNullOrEmpty() || idFasilitas.isNullOrEmpty()){
+                FancyToast.makeText(requireContext(),"Mohon isi form terlebih dahulu",FancyToast.LENGTH_SHORT,FancyToast.ERROR,false).show()
+            } else{
+                postAntrean("antreanbpjs",token,idFasilitas,keluhan)
+            }
         }
         binding.btnInformasi.setOnClickListener {
             val infoBottomSheet = DialogFragmentInformasiBuka()

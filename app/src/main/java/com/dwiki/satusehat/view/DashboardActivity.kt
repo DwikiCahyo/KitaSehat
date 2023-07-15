@@ -9,12 +9,15 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 import com.dwiki.satusehat.PreferenceManager
 import com.dwiki.satusehat.R
 import com.dwiki.satusehat.databinding.DashboardActivityBinding
 import com.dwiki.satusehat.view.dialog.DialogAlreadyRegister
 import com.dwiki.satusehat.util.Status
 import com.dwiki.satusehat.viewmodel.PasienProfileViewModel
+import com.dwiki.satusehat.viewmodel.SliderViewModel
 import com.dwiki.satusehat.viewmodel.StateViewModel
 import com.dwiki.satusehat.viewmodel.StatusAntreanViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +32,7 @@ class DashboardActivity : AppCompatActivity()  {
     private val profileViewModel:PasienProfileViewModel by viewModels()
     //viewmodel for status antrean
     private val statusAntreanViewModel:StatusAntreanViewModel by viewModels()
+    private val sliderViewModel:SliderViewModel by viewModels()
 
     private var isLogin  = false
     private lateinit var loadingDialog: LoadingDialog
@@ -60,16 +64,6 @@ class DashboardActivity : AppCompatActivity()  {
         prefManager.getToken()
 
 
-//        binding.ivProfilePasien.setOnClickListener {
-//            val editor = pref.edit()
-//            editor.clear()
-//            editor.apply()
-//            val intent = Intent(this,LoginActivity::class.java)
-//            Toast.makeText(this,"CLickkeerrr",Toast.LENGTH_SHORT).show()
-//            startActivity(intent)
-//            finish()
-//        }
-
         binding.ivProfilePasien.setOnClickListener {
             val intent = Intent(this,ProfileActivity::class.java)
             startActivity(intent)
@@ -87,9 +81,23 @@ class DashboardActivity : AppCompatActivity()  {
         }
 
 
+        imaageSlider()
 
         //set opactiy for text color
         binding.tvSelamatDatang.alpha = 0.75f
+
+
+    }
+
+    private fun imaageSlider() {
+        val imageSlider = binding.imageSlider
+        val sliderItem = ArrayList<SlideModel>()
+
+        sliderViewModel.imageSlider()
+        sliderViewModel.getImageSlider.observe(this){
+            it.map { sliderItem.add(SlideModel(it.imageLink)) }
+            imageSlider.setImageList(sliderItem,ScaleTypes.CENTER_CROP)
+        }
 
 
     }
@@ -101,6 +109,7 @@ class DashboardActivity : AppCompatActivity()  {
                     val antreanResponse = antrean.data
                     if (antreanResponse != null){
                         isRegister(true)
+                        binding.layoutLayanan4.visibility = View.VISIBLE
                         Log.d(TAG, "message : ${antreanResponse.message}")
                         val dataAntrean = antreanResponse.data
                         //binding for card antrean
@@ -108,7 +117,13 @@ class DashboardActivity : AppCompatActivity()  {
                         binding.tvNoAntrean.text = dataAntrean.nomorAntrean.toString()
                         binding.tvRumahSakit.text = dataAntrean.rumahSakit.toString()
                         binding.tvFasilitasRs.text = dataAntrean.fasilitas.toString()
-
+                        if (dataAntrean.jenisPasien == "BPJS"){
+                            binding.tvJenisAntrean.visibility = View.VISIBLE
+                            binding.tvJenisAntrean.text = "BPJS"
+                        } else{
+                            binding.tvJenisAntrean.visibility = View.VISIBLE
+                            binding.tvJenisAntrean.text = "Umum"
+                        }
                         //setting for shimmer
                         binding.antreanPasien.visibility = View.VISIBLE
                         binding.icDestination.visibility = View.VISIBLE

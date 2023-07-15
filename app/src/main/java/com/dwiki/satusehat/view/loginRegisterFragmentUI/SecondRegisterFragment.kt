@@ -27,6 +27,7 @@ import com.dwiki.satusehat.view.LoadingDialog
 import com.dwiki.satusehat.util.Status
 import com.dwiki.satusehat.viewmodel.RegisterViewModel
 import com.dwiki.satusehat.viewmodel.StateViewModel
+import com.shashank.sony.fancytoastlib.FancyToast
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.internal.managers.FragmentComponentManager
 import org.json.JSONObject
@@ -105,7 +106,9 @@ class SecondRegisterFragment : Fragment() {
             Log.d("Second Register Fragment" , "$nik $pass")
 
             if (nik == null || nama == null || jenisKelamin == null || tanggalLahir == null || agama == null || pekerjaan == null || pendidikan == null || perkawinan == null || noHp == null || pass == null){
-                Toast.makeText(requireContext(), "Data tidak boleh kosong", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), "Data tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                Log.e("Second Register","Data Kosong")
+                FancyToast.makeText(requireContext(),"Data tidak boleh kosong !",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show()
             } else {
                 registerViewModel.registerPasien(nik!!,nama,jenisKelamin!!,tanggalLahir!!,agama!!,pekerjaan!!,pendidikan!!,perkawinan!!,noBpjs,noHp, pass!!)
                 registerViewModel.registerResult.observe(requireActivity(), androidx.lifecycle.Observer {

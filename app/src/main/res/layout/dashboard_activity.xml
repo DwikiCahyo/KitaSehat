@@ -48,7 +48,8 @@
         android:id="@+id/content_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp"
+        android:paddingTop="15dp"
+        android:paddingHorizontal="15dp"
         android:orientation="vertical">
 
             <TextView
@@ -118,133 +119,161 @@
                 app:strokeWidth="1dp"
                 app:cardElevation="5dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:paddingHorizontal="10dp">
+                    android:orientation="vertical">
 
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cv_nomor_antrean"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:cardBackgroundColor="@color/primary"
-                        app:cardCornerRadius="12dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <TextView
-                                android:id="@+id/tv_antrean"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="10sp"
-                                android:text="Nomor Antrean"
-                                android:textColor="@color/white"
-                                android:fontFamily="@font/opensans_extrabold" />
-
-
-                            <TextView
-                                android:id="@+id/tv_no_antrean"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="50sp"
-                                android:textColor="@color/white"
-                                android:fontFamily="@font/opensans_extrabold" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tv_jenis_antrean"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        app:layout_constraintStart_toEndOf="@+id/cv_nomor_antrean"
-                        android:orientation="vertical"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent">
+                        android:layout_gravity="end"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        android:text="BPJS"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/primary"
 
-                        <TextView
-                            android:id="@+id/tv_status_antrian"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Status Antrian Anda"
-                            android:fontFamily="@font/poppins_regular"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:layout_marginLeft="10dp"
-                            app:layout_constraintTop_toTopOf="parent" />
+                        />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:paddingHorizontal="10dp">
+
+
+
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cv_nomor_antrean"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:cardBackgroundColor="@color/primary"
+                            app:cardCornerRadius="12dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/tv_antrean"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="10sp"
+                                    android:text="Nomor Antrean"
+                                    android:textColor="@color/white"
+                                    android:fontFamily="@font/opensans_extrabold" />
+
+
+                                <TextView
+                                    android:id="@+id/tv_no_antrean"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="50sp"
+                                    android:textColor="@color/white"
+                                    android:fontFamily="@font/opensans_extrabold" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/ic_destination"
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_destination" />
-
+                            app:layout_constraintStart_toEndOf="@+id/cv_nomor_antrean"
+                            android:orientation="vertical"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent">
 
                             <TextView
-                                android:id="@+id/tv_rumah_sakit"
+                                android:id="@+id/tv_status_antrian"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:text="Status Antrian Anda"
                                 android:fontFamily="@font/poppins_regular"
-                                android:textSize="14sp"
-                                android:textColor="?attr/colorPrimary"
-                                tools:text="RS Unipdu Medika"
-                                android:layout_marginLeft="10dp" />
+                                android:textSize="16sp"
+                                android:textColor="@color/black"
+                                android:layout_marginLeft="10dp"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/ic_destination"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_destination" />
+
+
+                                <TextView
+                                    android:id="@+id/tv_rumah_sakit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textSize="14sp"
+                                    android:textColor="?attr/colorPrimary"
+                                    tools:text="RS Unipdu Medika"
+                                    android:layout_marginLeft="10dp" />
+
+                            </LinearLayout>
+
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/ic_fasilitas"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_fasility" />
+
+
+                                <TextView
+                                    android:id="@+id/tv_fasilitas_rs"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/primary"
+                                    android:layout_marginTop="5dp"
+                                    tools:text="UGD/IGD"
+                                    android:layout_marginLeft="10dp" />
+                            </LinearLayout>
+
+
+
+
 
                         </LinearLayout>
 
 
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/ic_fasilitas"
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_fasility" />
-
-
-                            <TextView
-                                android:id="@+id/tv_fasilitas_rs"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/poppins_regular"
-                                android:textSize="14sp"
-                                android:textColor="@color/primary"
-                                android:layout_marginTop="5dp"
-                                tools:text="UGD/IGD"
-                                android:layout_marginLeft="10dp" />
-                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
+                </LinearLayout>
 
 
-                    </LinearLayout>
-
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
@@ -253,7 +282,7 @@
             android:id="@+id/tv_layanan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:text="Layanan"
             android:fontFamily="@font/poppins_bold"
             android:textSize="16sp"
@@ -266,6 +295,7 @@
         <!--        card detail antrean-->
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -307,7 +337,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_hospital"
+                            android:src="@drawable/ic_pendaftaran"
                             android:padding="15dp"
                             android:contentDescription="hospitals" />
 
@@ -338,12 +368,13 @@
                         android:layout_gravity="center"
                         app:cardBackgroundColor="@color/card_purple"
                         app:cardCornerRadius="50dp" >
+
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_hospital"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="hospitals"
                             android:padding="15dp"
-                            android:contentDescription="hospitals" />
+                            android:src="@drawable/ic_hospital" />
 
                     </com.google.android.material.card.MaterialCardView>
 
@@ -377,7 +408,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_hospital"
+                            android:src="@drawable/ic_detail_antrean"
                             android:padding="15dp"
                             android:contentDescription="hospitals" />
                     </com.google.android.material.card.MaterialCardView>
@@ -397,6 +428,7 @@
                     android:id="@+id/layout_layanan4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:orientation="vertical">
 
                     <com.google.android.material.card.MaterialCardView
@@ -406,7 +438,15 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
                         app:cardBackgroundColor="@color/card_yellow"
-                        app:cardCornerRadius="8dp" />
+                        app:cardCornerRadius="50dp" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_antrean"
+                            android:padding="15dp"
+                            android:contentDescription="hospitals" />
+                    </com.google.android.material.card.MaterialCardView>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -414,27 +454,42 @@
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/black"
-                        android:text="Detail"
+                        android:text="Detail Antrean"
                         android:layout_gravity="center"
                         android:textSize="12sp" />
                 </LinearLayout>
-
-
-
-
-
             </com.google.android.flexbox.FlexboxLayout>
-
-
-
-
-
-
         </com.google.android.material.card.MaterialCardView>
 
+        <TextView
+            android:id="@+id/tv_informasi_pasien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Informasi Layanan"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_menu" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_slider_image"
+            style="@style/customCardView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_informasi_pasien"
+            app:layout_constraintStart_toStartOf="parent"
+            >
 
-
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/image_slider"
+                style="@style/CustomImageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
+        </androidx.cardview.widget.CardView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

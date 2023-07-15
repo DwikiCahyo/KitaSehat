@@ -16,9 +16,6 @@ import javax.inject.Inject
 @HiltViewModel
 class RumahSakitViewModel @Inject constructor(val repository: MainRepository):ViewModel() {
 
-//    private val _photos = MutableLiveData<List<Photo>>()
-//    val photos: LiveData<List<Photo>> = _photos
-
     private val _responseRumahSakit = MutableLiveData<Resources<RumahSakitResponse>>()
     val responseRumahSakit:LiveData<Resources<RumahSakitResponse>> = _responseRumahSakit
 

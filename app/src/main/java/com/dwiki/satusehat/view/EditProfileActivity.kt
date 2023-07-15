@@ -17,6 +17,7 @@ import com.dwiki.satusehat.databinding.ActivityEditProfileBinding
 import com.dwiki.satusehat.view.dialog.SuccessDialog
 import com.dwiki.satusehat.util.Status
 import com.dwiki.satusehat.viewmodel.PasienProfileViewModel
+import com.shashank.sony.fancytoastlib.FancyToast
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -111,7 +112,7 @@ class EditProfileActivity : AppCompatActivity() {
             nama = binding.edtNama.text.toString()
             pekerjaan = binding.edtPekerjaan.text.toString()
             noBpjs = binding.edtBpjs.text.toString()
-            noTelepon = binding.edtNoTelepon.text.toString()
+            noTelepon = "0" + binding.edtNoTelepon.text.toString()
             pekerjaan = binding.edtPekerjaan.text.toString()
             pasienProfileViewModel.editProfile(token,nama,jenisKelamin,tanggalLahir,agama,pekerjaan,pendidikan,perkawinan,noBpjs,noTelepon)
             pasienProfileViewModel.responseEditProfile.observe(this){
@@ -121,6 +122,7 @@ class EditProfileActivity : AppCompatActivity() {
                     }
                     else ->{
                         Log.e("Edit Profile Activity","Data gagal diedit")
+                        FancyToast.makeText(this,"Gagal Mengubah Data",FancyToast.LENGTH_LONG,FancyToast.ERROR,false);
                     }
 
                 }
